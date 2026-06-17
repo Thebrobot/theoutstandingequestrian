@@ -10,6 +10,8 @@ interface Props {
   description?: string;
   minimal?: boolean;
   heroNav?: boolean;
+  preloadVideo?: string;
+  preloadPoster?: string;
 }
 
 const {
@@ -17,6 +19,8 @@ const {
   description = "Premium equestrian education for riders who want to grow with intention.",
   minimal = false,
   heroNav = !minimal,
+  preloadVideo,
+  preloadPoster,
 } = Astro.props;
 
 const pageTitle = title === BRAND_NAME ? title : `${title} | ${BRAND_NAME}`;
@@ -36,6 +40,16 @@ const pageTitle = title === BRAND_NAME ? title : `${title} | ${BRAND_NAME}`;
       rel="stylesheet"
     />
     <title>{pageTitle}</title>
+    {
+      preloadPoster && (
+        <link rel="preload" as="image" href={preloadPoster} fetchpriority="high" />
+      )
+    }
+    {
+      preloadVideo && (
+        <link rel="preload" as="video" href={preloadVideo} type="video/mp4" fetchpriority="high" />
+      )
+    }
   </head>
   <body class:list={["min-h-screen flex flex-col", !minimal && "announcement-visible"]}>
     {minimal ? (

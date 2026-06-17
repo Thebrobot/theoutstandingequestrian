@@ -1,0 +1,56 @@
+---
+interface Props {
+  mp4: string;
+  webm: string;
+  poster: string;
+}
+
+const { mp4, webm, poster } = Astro.props;
+---
+
+<video
+  class="hero-video absolute inset-0 w-full h-full object-cover"
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="auto"
+  fetchpriority="high"
+  poster={poster}
+  disablepictureinpicture
+  disableremoteplayback
+  aria-hidden="true"
+>
+  <source src={webm} type="video/webm" />
+  <source src={mp4} type="video/mp4" />
+</video>
+
+<script>
+  function initHeroVideos() {
+    document.querySelectorAll<HTMLVideoElement>("video.hero-video").forEach((video) => {
+      const play = () => {
+        if (video.paused) {
+          video.play().catch(() => {});
+        }
+      };
+
+      if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+        play();
+      } else {
+        video.addEventListener("loadeddata", play, { once: true });
+        video.addEventListener("canplay", play, { once: true });
+      }
+
+      document.addEventListener(
+        "visibilitychange",
+        () => {
+          if (!document.hidden) play();
+        },
+        { passive: true },
+      );
+    });
+  }
+
+  initHeroVideos();
+  document.addEventListener("astro:page-load", initHeroVideos);
+</script>
