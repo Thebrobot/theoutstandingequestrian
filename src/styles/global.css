@@ -29,7 +29,7 @@ html {
   :root {
     --announcement-height: 2.875rem;
     --nav-stack-height: 5.25rem;
-    --hero-breathe: 3rem;
+    --hero-breathe: 2rem;
     --section-pad-y: 4rem;
   }
 }
@@ -295,12 +295,16 @@ body {
 }
 
 @media (min-width: 640px) {
-  .page-hero--home {
-    min-height: 90vh;
+  .page-hero--home,
+  .page-hero--courses {
+    min-height: 100dvh;
+    justify-content: center;
   }
 
-  .page-hero--courses {
-    min-height: 70vh;
+  .page-hero--home .hero-content,
+  .page-hero--courses .hero-content {
+    padding-top: var(--hero-breathe);
+    padding-bottom: var(--hero-breathe);
   }
 
   .page-hero--standard {
