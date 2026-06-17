@@ -1,0 +1,6 @@
+videos/
+node_modules/
+.git/
+dist/
+.astro/
+.vercel/
