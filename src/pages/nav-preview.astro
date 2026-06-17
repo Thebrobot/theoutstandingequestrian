@@ -1,0 +1,103 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavPreviewFrame from "../components/nav/NavPreviewFrame.astro";
+import NavCurrent from "../components/nav/NavCurrent.astro";
+import NavTransparent from "../components/nav/NavTransparent.astro";
+import NavPlum from "../components/nav/NavPlum.astro";
+import NavCentered from "../components/nav/NavCentered.astro";
+import NavPill from "../components/nav/NavPill.astro";
+import NavSerif from "../components/nav/NavSerif.astro";
+import NavOverlay from "../components/nav/NavOverlay.astro";
+---
+
+<BaseLayout title="Nav Style Preview" minimal={true}>
+  <div class="bg-cream min-h-screen py-10 sm:py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gold mb-2">Design review</p>
+        <h1 class="font-serif text-3xl sm:text-4xl font-bold text-plum mb-3">
+          Navigation Style Options
+        </h1>
+        <p class="text-charcoal/70 max-w-xl mx-auto">
+          Compare each option below, then tell me which number to keep. Scroll inside the
+          transparent demo to see it change. Click Menu on the overlay demo to open it.
+        </p>
+        <a
+          href="/"
+          class="inline-block mt-4 text-sm text-plum hover:text-plum-dark underline underline-offset-4"
+        >
+          ← Back to site
+        </a>
+      </div>
+
+      <NavPreviewFrame
+        number="Current"
+        title="Current baseline"
+        description="White sticky bar with Inter links and gold underline hover."
+        id="current"
+        scrollable={false}
+      >
+        <NavCurrent />
+      </NavPreviewFrame>
+
+      <NavPreviewFrame
+        number={1}
+        title="Transparent → solid on scroll"
+        description="Cinematic nav over the hero that solidifies once you scroll past it."
+        id="transparent"
+      >
+        <NavTransparent id="transparent" />
+      </NavPreviewFrame>
+
+      <NavPreviewFrame
+        number={2}
+        title="Plum editorial bar"
+        description="Plum background with uppercase tracked links — matches your section-plum blocks."
+        id="plum"
+        scrollable={false}
+      >
+        <NavPlum />
+      </NavPreviewFrame>
+
+      <NavPreviewFrame
+        number={3}
+        title="Centered logo + split nav"
+        description="Luxury editorial layout with links split left and right of the logo."
+        id="centered"
+        scrollable={false}
+      >
+        <NavCentered />
+      </NavPreviewFrame>
+
+      <NavPreviewFrame
+        number={4}
+        title="Pill / capsule nav"
+        description="Links inside a rounded track with active page highlighted as a filled pill."
+        id="pill"
+        scrollable={false}
+      >
+        <NavPill activeHref="/" />
+      </NavPreviewFrame>
+
+      <NavPreviewFrame
+        number={5}
+        title="Serif links + gold diamond"
+        description="Playfair Display navigation with diamond active marker from your section dividers."
+        id="serif"
+        scrollable={false}
+      >
+        <NavSerif activeHref="/" />
+      </NavPreviewFrame>
+
+      <NavPreviewFrame
+        number={6}
+        title="Full-screen overlay menu"
+        description="Minimal bar with a Menu button that opens a dramatic full-screen nav."
+        id="overlay"
+        scrollable={false}
+      >
+        <NavOverlay id="overlay" />
+      </NavPreviewFrame>
+    </div>
+  </div>
+</BaseLayout>

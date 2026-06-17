@@ -1,0 +1,108 @@
+---
+import { navLinks } from "../../data/navLinks";
+import CTAButton from "../CTAButton.astro";
+import Logo from "./Logo.astro";
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const btnId = `${id}-menu-btn`;
+const overlayId = `${id}-overlay`;
+---
+
+<div class="relative min-h-[420px]">
+  <header class="sticky top-0 z-40 bg-plum/95 backdrop-blur border-b border-gold/20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        <Logo theme="light" />
+        <button
+          type="button"
+          id={btnId}
+          class="flex items-center gap-2 text-white/90 hover:text-gold transition-colors text-sm uppercase tracking-[0.15em] font-semibold"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls={overlayId}
+        >
+          Menu
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div
+    id={overlayId}
+    class="nav-overlay hidden absolute inset-0 z-50 section-plum flex flex-col items-center justify-center"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Navigation menu"
+  >
+    <button
+      type="button"
+      data-close-overlay={id}
+      class="absolute top-4 right-4 p-2 text-white/70 hover:text-gold transition-colors"
+      aria-label="Close menu"
+    >
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <nav class="flex flex-col items-center gap-6">
+      {
+        navLinks.map((link, i) => (
+          <a
+            href={link.href}
+            class="nav-overlay-link font-serif text-3xl sm:text-4xl text-white hover:text-gold transition-colors"
+            style={`animation-delay: ${i * 60}ms`}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="mt-10">
+      <CTAButton href="/enroll" variant="gold" size="lg">
+        Enroll Now
+      </CTAButton>
+    </div>
+  </div>
+
+  <div class="relative min-h-[220px] flex items-end section-plum px-6 py-10">
+    <p class="font-serif text-2xl text-white">
+      Click <span class="text-gold italic">Menu</span> to open full-screen overlay
+    </p>
+  </div>
+  <div class="min-h-[200px] bg-white px-6 py-10">
+    <p class="text-charcoal/70 max-w-md">
+      Dramatic full-viewport navigation with large serif links and staggered reveal.
+    </p>
+  </div>
+</div>
+
+<script define:vars={{ id, btnId, overlayId }}>
+  const btn = document.getElementById(btnId);
+  const overlay = document.getElementById(overlayId);
+
+  const close = () => {
+    overlay?.classList.add("hidden");
+    btn?.setAttribute("aria-expanded", "false");
+  };
+
+  btn?.addEventListener("click", () => {
+    const isOpen = !overlay?.classList.contains("hidden");
+    if (isOpen) {
+      close();
+    } else {
+      overlay?.classList.remove("hidden");
+      btn?.setAttribute("aria-expanded", "true");
+    }
+  });
+
+  overlay?.querySelector(`[data-close-overlay="${id}"]`)?.addEventListener("click", close);
+</script>

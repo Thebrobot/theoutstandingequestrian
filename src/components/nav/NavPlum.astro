@@ -1,0 +1,36 @@
+---
+import { navLinks } from "../../data/navLinks";
+import CTAButton from "../CTAButton.astro";
+import Logo from "./Logo.astro";
+---
+
+<header class="sticky top-0 z-40 section-plum border-b border-gold/30 shadow-md shadow-black/10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="flex items-center justify-between h-16">
+      <Logo theme="light" />
+      <nav class="hidden md:flex items-center gap-8">
+        {
+          navLinks.map((link) => (
+            <a href={link.href} class="nav-link-editorial">
+              {link.label}
+            </a>
+          ))
+        }
+        <CTAButton href="/enroll" variant="gold" size="sm">
+          Enroll Now
+        </CTAButton>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div class="relative min-h-[220px] flex items-end section-plum px-6 py-10 border-t border-gold/20">
+  <p class="font-serif text-2xl text-white">
+    Plum bar matches your <span class="text-gold italic">section-plum</span> blocks
+  </p>
+</div>
+<div class="min-h-[200px] bg-white px-6 py-10">
+  <p class="text-charcoal/70 max-w-md">
+    Uppercase tracked links echo the eyebrow labels used throughout the site.
+  </p>
+</div>

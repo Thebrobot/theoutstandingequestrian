@@ -1,0 +1,34 @@
+---
+import { navLinks } from "../../data/navLinks";
+import CTAButton from "../CTAButton.astro";
+import Logo from "./Logo.astro";
+---
+
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-plum/15 shadow-sm shadow-plum/5">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="flex items-center justify-between h-16">
+      <Logo />
+      <nav class="hidden md:flex items-center gap-8">
+        {
+          navLinks.map((link) => (
+            <a href={link.href} class="nav-link">
+              {link.label}
+            </a>
+          ))
+        }
+        <CTAButton href="/enroll" variant="gold" size="sm">
+          Enroll Now
+        </CTAButton>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div class="relative min-h-[220px] flex items-end section-plum px-6 py-10">
+  <p class="font-serif text-2xl text-white">Your current nav for comparison</p>
+</div>
+<div class="min-h-[200px] bg-white px-6 py-10">
+  <p class="text-charcoal/70 max-w-md">
+    White sticky bar, Inter links, gold underline hover — the baseline you have today.
+  </p>
+</div>

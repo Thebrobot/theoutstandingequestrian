@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import EnrollmentForm from "../components/EnrollmentForm.astro";
+import { COURSE_NAME } from "../config";
+---
+
+<BaseLayout
+  title={`Enroll in ${COURSE_NAME}`}
+  description={`Complete your enrollment in ${COURSE_NAME} and get instant access.`}
+  minimal={true}
+>
+  <section class="py-12 sm:py-16">
+    <div class="max-w-lg mx-auto px-4">
+      <div class="text-center mb-8">
+        <p class="text-sm font-semibold uppercase tracking-widest text-gold mb-2">Enrollment</p>
+        <h1 class="font-serif text-3xl font-bold text-charcoal mb-2">{COURSE_NAME}</h1>
+        <p class="text-charcoal/70">
+          Six weeks of structured training — groundwork, riding, and mental fitness — at your own pace.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sm:p-8">
+        <EnrollmentForm />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,32 @@
+---
+interface Props {
+  number: number | string;
+  title: string;
+  description: string;
+  id: string;
+  scrollable?: boolean;
+}
+
+const { number, title, description, id, scrollable = true } = Astro.props;
+---
+
+<section class="mb-10 rounded-2xl border border-plum/15 overflow-hidden shadow-sm bg-white">
+  <div class="bg-cream px-5 sm:px-6 py-4 border-b border-plum/10">
+    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gold mb-1">
+      Option {number}
+    </p>
+    <h2 class="font-serif text-xl sm:text-2xl font-bold text-plum">{title}</h2>
+    <p class="text-sm text-charcoal/70 mt-1">{description}</p>
+  </div>
+
+  <div
+    class:list={[
+      "nav-preview-demo relative bg-white",
+      scrollable && "max-h-[480px] overflow-y-auto",
+    ]}
+    data-scroll-root={id}
+    id={`demo-${id}`}
+  >
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,27 @@
+---
+interface Props {
+  quote: string;
+  name: string;
+  discipline: string;
+}
+
+const { quote, name, discipline } = Astro.props;
+---
+
+<blockquote class="relative bg-white rounded-2xl p-6 border border-plum/10 shadow-sm card-lift overflow-hidden">
+  <span class="absolute top-3 right-4 font-serif text-5xl text-gold/20 leading-none select-none" aria-hidden="true">
+    &rdquo;
+  </span>
+  <p class="relative text-charcoal/80 italic leading-relaxed mb-5 font-serif text-[1.05rem]">
+    &ldquo;{quote}&rdquo;
+  </p>
+  <footer class="relative flex items-center gap-3">
+    <div class="w-9 h-9 rounded-full bg-plum/10 flex items-center justify-center shrink-0">
+      <span class="font-serif font-bold text-plum text-sm">{name.charAt(0)}</span>
+    </div>
+    <cite class="not-italic">
+      <span class="font-semibold text-charcoal block">{name}</span>
+      <span class="text-charcoal/50 text-sm">{discipline}</span>
+    </cite>
+  </footer>
+</blockquote>

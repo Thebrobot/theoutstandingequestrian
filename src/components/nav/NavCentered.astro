@@ -1,0 +1,56 @@
+---
+import { navLinks } from "../../data/navLinks";
+import CTAButton from "../CTAButton.astro";
+import Logo from "./Logo.astro";
+
+const leftLinks = navLinks.slice(0, 2);
+const rightLinks = navLinks.slice(2);
+---
+
+<header class="sticky top-0 z-40 bg-cream/95 backdrop-blur border-b border-plum/10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="relative flex items-center justify-between h-16">
+      <nav class="hidden md:flex items-center gap-6 flex-1">
+        {
+          leftLinks.map((link) => (
+            <a href={link.href} class="nav-link-serif">
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="absolute left-1/2 -translate-x-1/2">
+        <Logo />
+      </div>
+
+      <div class="hidden md:flex items-center gap-6 flex-1 justify-end">
+        {
+          rightLinks.map((link) => (
+            <a href={link.href} class="nav-link-serif">
+              {link.label}
+            </a>
+          ))
+        }
+        <CTAButton href="/enroll" variant="gold" size="sm">
+          Enroll Now
+        </CTAButton>
+      </div>
+
+      <div class="md:hidden ml-auto">
+        <Logo />
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="relative min-h-[220px] flex items-end bg-gradient-to-br from-plum/90 to-plum px-6 py-10">
+  <p class="font-serif text-2xl text-white">
+    Centered logo — <span class="text-gold italic">editorial luxury</span> layout
+  </p>
+</div>
+<div class="min-h-[200px] bg-white px-6 py-10">
+  <p class="text-charcoal/70 max-w-md">
+    Links split left and right with the brand mark anchored in the center.
+  </p>
+</div>

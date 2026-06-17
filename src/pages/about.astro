@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CTAButton from "../components/CTAButton.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import { BRAND_NAME, INSTRUCTOR_NAME, COURSE_NAME } from "../config";
+---
+
+<BaseLayout
+  title="About"
+  description={`Learn about ${BRAND_NAME} and ${INSTRUCTOR_NAME}'s approach to equestrian training.`}
+>
+  <section class="section-plum py-16 sm:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <SectionHeader
+        eyebrow="Our story"
+        heading={`Welcome to ${BRAND_NAME}`}
+        theme="dark"
+      />
+      <p class="mt-6 text-lg text-cream/85 leading-relaxed">
+        Premium equestrian education for riders who want to grow with intention — online, supported,
+        and together.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-white py-16 sm:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="space-y-6 text-charcoal/80 leading-relaxed">
+        <p>
+          {BRAND_NAME} exists for riders who train on their own and want more than random exercises
+          and guesswork. We believe the best horsemanship combines clear physical training with
+          deliberate mental fitness — because riding is as much psychology as it is skill.
+        </p>
+        <p>
+          {COURSE_NAME} is our flagship six-week program. Each week delivers groundwork, mounted
+          work, and a mental fitness lesson designed to work together. You don&apos;t need a trainer
+          in the ring with you — you need a plan, clear instruction, and the mindset tools to show
+          up as your best self for your horse.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-plum py-16 sm:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-6">
+        {INSTRUCTOR_NAME}&apos;s philosophy
+      </h2>
+      <div class="space-y-6 text-cream/85 leading-relaxed">
+        <p>
+          Every session starts with intention. Before you ask anything of your horse, consider their
+          day — were they just turned out? Are they sore? How do they feel about this exercise?
+          This empathy-first approach, what we call putting yourself in your horse&apos;s shoes, is
+          the foundation of everything we teach.
+        </p>
+        <p>
+          Training is reward-based and individualized. Some horses want a pet; others want a voice
+          command. Some need a walk break between fences; others need a flatwork reset. The goal is
+          always the same: communicate in the language your horse already speaks.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-white py-16 sm:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="space-y-6 text-charcoal/80 leading-relaxed">
+        <p>
+          Mental fitness isn&apos;t an afterthought — it&apos;s woven into every week. Visualization
+          before you ride. Reframing stress as a useful process, not an enemy. Setting goals with a
+          why and a deadline. Celebrating wins big and small, because the habits that compound in
+          riding compound in life too.
+        </p>
+        <p>
+          Whether you&apos;re working on shoulder-over from the ground, breath control under saddle,
+          or navigating a jump course with strategic rewards, the through-line is connection —
+          responsiveness before movement quality, and progress you can feel session after session.
+        </p>
+      </div>
+
+      <div class="mt-12 text-center">
+        <CTAButton href="/enroll" variant="primary" size="lg">
+          Enroll in {COURSE_NAME}
+        </CTAButton>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,64 @@
+---
+import { navLinks } from "../../data/navLinks";
+import CTAButton from "../CTAButton.astro";
+import Logo from "./Logo.astro";
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<header
+  data-nav-transparent={id}
+  class="nav-transparent-top sticky top-0 z-40 transition-all duration-300 bg-transparent border-b border-transparent"
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="flex items-center justify-between h-16">
+      <Logo theme="light" class="nav-transparent-logo-light" />
+      <Logo theme="default" class="nav-transparent-logo-dark hidden" />
+      <nav class="hidden md:flex items-center gap-8">
+        {
+          navLinks.map((link) => (
+            <a href={link.href} class="nav-link-light">
+              {link.label}
+            </a>
+          ))
+        }
+        <CTAButton href="/enroll" variant="gold" size="sm">
+          Enroll Now
+        </CTAButton>
+      </nav>
+      <span class="md:hidden text-white/80 text-xs uppercase tracking-wider">Scroll to test</span>
+    </div>
+  </div>
+</header>
+
+<div class="relative min-h-[220px] flex items-end section-plum px-6 py-10">
+  <p class="font-serif text-2xl text-white">
+    Hero section — <span class="text-gold italic">scroll down</span> to see nav solidify
+  </p>
+</div>
+<div class="min-h-[280px] bg-white px-6 py-10">
+  <p class="text-charcoal/70 max-w-md">
+    White content area. The nav transitions from transparent to a solid cream bar with plum text.
+  </p>
+</div>
+
+<script define:vars={{ id }}>
+  const root = document.querySelector(`[data-scroll-root="${id}"]`);
+  const header = root?.querySelector(`[data-nav-transparent="${id}"]`);
+  if (root && header) {
+    const logoLight = header.querySelector(".nav-transparent-logo-light");
+    const logoDark = header.querySelector(".nav-transparent-logo-dark");
+
+    root.addEventListener("scroll", () => {
+      const scrolled = root.scrollTop > 40;
+      header.classList.toggle("nav-transparent-top", !scrolled);
+      header.classList.toggle("nav-transparent-scrolled", scrolled);
+      logoLight?.classList.toggle("hidden", scrolled);
+      logoDark?.classList.toggle("hidden", !scrolled);
+    });
+  }
+</script>

@@ -1,0 +1,45 @@
+---
+import type { Course } from "../data/courses";
+
+interface Props {
+  course: Course;
+}
+
+const { course } = Astro.props;
+---
+
+<article class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+  <div class="aspect-video bg-gray-200 overflow-hidden">
+    <img
+      src={course.thumbnail}
+      alt={course.title}
+      class="w-full h-full object-cover"
+      loading="lazy"
+    />
+  </div>
+  <div class="p-6">
+    <span class="inline-block text-xs font-semibold uppercase tracking-wide text-gold bg-gold/10 px-2 py-1 rounded mb-3">
+      {course.format}
+    </span>
+    <h2 class="font-serif text-2xl font-bold text-charcoal mb-2">{course.title}</h2>
+    {
+      course.price && (
+        <p class="text-xl font-bold text-plum mb-2">
+          {course.price}
+          {course.priceNote && <span class="text-sm text-charcoal/60 font-normal ml-1">{course.priceNote}</span>}
+        </p>
+      )
+    }
+    <p class="text-charcoal/70 text-sm leading-relaxed mb-4">{course.description}</p>
+    <a
+      href={`/courses/${course.slug}`}
+      class="inline-flex items-center text-plum font-semibold hover:text-plum-dark transition-colors"
+    >
+      Learn More
+      <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"
+        ></path>
+      </svg>
+    </a>
+  </div>
+</article>

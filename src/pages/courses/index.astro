@@ -1,0 +1,148 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import CoursePricingCard from "../../components/CoursePricingCard.astro";
+import CTAButton from "../../components/CTAButton.astro";
+import {
+  renewProgram,
+  getCoursesByCategory,
+} from "../../data/courses";
+---
+
+<BaseLayout
+  title="Our Courses"
+  description="Whether you're aiming to reset your ride or prepare for your first FEI, The Outstanding Equestrian offers coaching that empowers you to think, ride, and train like a true horseman."
+>
+  <!-- Hero -->
+  <section class="relative text-white overflow-hidden min-h-[70vh] flex items-center">
+    <video
+      class="absolute inset-0 w-full h-full object-cover"
+      autoplay
+      muted
+      loop
+      playsinline
+      aria-hidden="true"
+    >
+      <source src="/videos/horse-jumping-hero.mp4" type="video/mp4" />
+    </video>
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-plum/90 via-plum/75 to-plum/50"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(201,168,76,0.2),transparent_50%)]"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,rgba(201,168,76,0.12),transparent_40%)]"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 py-20 sm:py-28 text-center w-full">
+      <p class="text-gold font-semibold uppercase tracking-widest text-sm mb-3">
+        Better Rides Begin Here
+      </p>
+      <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6">
+        Whether you're aiming to reset your ride or prepare for your first FEI, The Outstanding
+        Equestrian offers coaching that empowers you to think, ride, and train like a true horseman.
+      </h1>
+      <p class="text-lg text-cream/90 max-w-2xl mx-auto">
+        Rooted in clarity, confidence, and momentum. Welcome to rider education that actually works.
+      </p>
+    </div>
+  </section>
+
+  <!-- Renew Your Ride -->
+  <section class="section-white py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <SectionHeader
+        eyebrow="Explore Courses"
+        heading={renewProgram.title}
+        subtext={renewProgram.description}
+        align="center"
+        class="mb-10"
+      />
+      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 max-w-4xl mx-auto">
+        {
+          renewProgram.benefits.map((benefit) => (
+            <li class="flex gap-2 text-sm text-charcoal/80 bg-cream rounded-lg px-4 py-3">
+              <svg
+                class="w-4 h-4 text-gold shrink-0 mt-0.5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              {benefit}
+            </li>
+          ))
+        }
+      </ul>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {getCoursesByCategory("renew").map((course) => <CoursePricingCard course={course} />)}
+      </div>
+      <div class="mt-12 text-center">
+        <p class="text-charcoal/70 mb-4">
+          Ready to ride with more confidence, clarity, and purpose?
+        </p>
+        <CTAButton href="/courses/renew-solo" variant="secondary">Learn more</CTAButton>
+      </div>
+    </div>
+  </section>
+
+  <!-- Memberships -->
+  <section class="section-plum py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <SectionHeader
+        eyebrow="Keep the Momentum Going"
+        heading="Monthly Memberships"
+        subtext="Once you complete Renew Your Ride, continue your growth with deeper support from one of our monthly memberships."
+        align="center"
+        theme="dark"
+        class="mb-12"
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {getCoursesByCategory("membership").map((course) => <CoursePricingCard course={course} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Your First FEI -->
+  <section class="section-white py-16 sm:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      {
+        getCoursesByCategory("specialized").map((course) => (
+          <div class="text-center">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-2">
+              Specialized Course
+            </p>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal mb-4">
+              {course.title}
+            </h2>
+            <p class="text-lg text-charcoal/70 max-w-2xl mx-auto mb-8 leading-relaxed">
+              {course.description}
+            </p>
+            <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 max-w-2xl mx-auto">
+              {course.features.map((feature) => (
+                <li class="bg-cream rounded-lg px-4 py-3 text-sm font-medium text-charcoal/80">
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <p class="text-sm text-charcoal/60 mb-6">{course.subtitle}</p>
+            <p class="text-charcoal/70 mb-8 max-w-xl mx-auto">{course.bestFor}</p>
+            <CTAButton href={course.cta.href} variant="primary" size="lg">
+              {course.cta.label}
+            </CTAButton>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

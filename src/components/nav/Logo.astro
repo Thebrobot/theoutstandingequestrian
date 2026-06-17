@@ -1,0 +1,19 @@
+---
+interface Props {
+  theme?: "default" | "light";
+  class?: string;
+}
+
+const { theme = "default", class: className = "" } = Astro.props;
+const outstandingClass =
+  theme === "light"
+    ? "text-white group-hover:text-cream"
+    : "text-plum group-hover:text-plum-dark";
+---
+
+<a href="/" class:list={["group shrink-0", className]}>
+  <span class:list={["font-serif text-xl font-bold transition-colors", outstandingClass]}>
+    Outstanding
+  </span>
+  <span class="font-serif text-xl font-bold text-gold italic"> Equestrian</span>
+</a>

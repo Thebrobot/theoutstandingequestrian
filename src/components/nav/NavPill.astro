@@ -1,0 +1,50 @@
+---
+import { navLinks } from "../../data/navLinks";
+import CTAButton from "../CTAButton.astro";
+import Logo from "./Logo.astro";
+
+interface Props {
+  activeHref?: string;
+}
+
+const { activeHref = Astro.url.pathname } = Astro.props;
+---
+
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-plum/10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="flex items-center justify-between h-16 gap-4">
+      <Logo />
+      <nav class="hidden md:flex items-center gap-3">
+        <div class="nav-pill-track flex items-center gap-1 p-1 rounded-full bg-plum/5 border border-plum/10">
+          {
+            navLinks.map((link) => {
+              const isActive = activeHref === link.href || (link.href !== "/" && activeHref.startsWith(link.href));
+              return (
+                <a
+                  href={link.href}
+                  class:list={["nav-pill-link", isActive && "nav-pill-link-active"]}
+                >
+                  {link.label}
+                </a>
+              );
+            })
+          }
+        </div>
+        <CTAButton href="/enroll" variant="gold" size="sm">
+          Enroll Now
+        </CTAButton>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div class="relative min-h-[220px] flex items-end section-plum px-6 py-10">
+  <p class="font-serif text-2xl text-white">
+    Capsule nav — echoes your <span class="text-gold italic">discipline pills</span>
+  </p>
+</div>
+<div class="min-h-[200px] bg-white px-6 py-10">
+  <p class="text-charcoal/70 max-w-md">
+    Links live inside a rounded track; active page gets a filled plum pill.
+  </p>
+</div>

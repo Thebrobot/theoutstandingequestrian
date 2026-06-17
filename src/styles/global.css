@@ -1,0 +1,226 @@
+@import "tailwindcss";
+
+@theme {
+  --color-plum: #34023c;
+  --color-plum-dark: #28012e;
+  --color-plum-light: #4a1558;
+  --color-gold: #ce9e5b;
+  --color-gold-light: #e4b878;
+  --color-cream: #faf8f5;
+  --color-cream-dark: #f0ebe3;
+  --color-charcoal: #2d2d2d;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-charcoal font-sans antialiased;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-gold) 35%, white);
+  color: var(--color-charcoal);
+}
+
+/* Subtle paper grain on cream sections */
+.bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* Alternating section backgrounds */
+.section-plum {
+  @apply relative text-white overflow-hidden;
+  background: linear-gradient(
+    155deg,
+    var(--color-plum-dark) 0%,
+    var(--color-plum) 42%,
+    var(--color-plum-light) 100%
+  );
+}
+
+.section-plum::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 85%, rgba(206, 158, 91, 0.18), transparent 45%),
+    radial-gradient(circle at 90% 10%, rgba(206, 158, 91, 0.1), transparent 40%);
+}
+
+.section-plum > * {
+  @apply relative z-10;
+}
+
+.section-white {
+  @apply bg-white text-charcoal;
+}
+
+.card-lift {
+  @apply transition-all duration-300;
+}
+
+.card-lift:hover {
+  @apply -translate-y-1 shadow-lg;
+}
+
+.section-divider {
+  @apply flex items-center justify-center gap-3 py-2;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  @apply h-px flex-1 max-w-24 bg-gold/40;
+}
+
+.section-divider span {
+  @apply w-2 h-2 rotate-45 bg-gold/60;
+}
+
+.editorial-quote::before {
+  content: "\201C";
+  @apply block font-serif text-6xl sm:text-7xl text-gold leading-none mb-2;
+}
+
+.nav-link {
+  @apply relative text-sm font-medium text-charcoal/80 hover:text-plum transition-colors;
+}
+
+.nav-link::after {
+  content: "";
+  @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300;
+}
+
+.nav-link:hover::after {
+  @apply w-full;
+}
+
+/* ── Nav variant styles (preview + production) ── */
+
+.nav-link-light {
+  @apply relative text-sm font-medium text-white/85 hover:text-white transition-colors;
+}
+
+.nav-link-light::after {
+  content: "";
+  @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300;
+}
+
+.nav-link-light:hover::after {
+  @apply w-full;
+}
+
+.nav-transparent-top .nav-link-light {
+  @apply text-white/85 hover:text-white;
+}
+
+.nav-transparent-scrolled {
+  @apply bg-cream/95 backdrop-blur border-b border-plum/10 shadow-sm shadow-plum/5;
+}
+
+.nav-transparent-scrolled .nav-link-light {
+  @apply text-charcoal/80 hover:text-plum;
+}
+
+.nav-transparent-scrolled .nav-link-light::after {
+  @apply bg-gold;
+}
+
+.nav-link-editorial {
+  @apply text-xs font-semibold uppercase tracking-[0.15em] text-white/80 hover:text-gold transition-colors;
+}
+
+.nav-link-serif {
+  @apply relative font-serif text-base text-charcoal/80 hover:text-plum transition-colors pb-2;
+}
+
+.nav-link-serif-active {
+  @apply text-plum font-bold;
+}
+
+.nav-serif-diamond {
+  @apply absolute -bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rotate-45 bg-gold;
+}
+
+.nav-pill-track {
+  @apply shrink-0;
+}
+
+.nav-pill-link {
+  @apply px-4 py-1.5 rounded-full text-sm font-medium text-charcoal/70 hover:text-plum transition-all duration-200;
+}
+
+.nav-pill-link-active {
+  @apply bg-plum text-white shadow-sm;
+}
+
+.nav-overlay-link {
+  animation: nav-overlay-in 0.4s ease both;
+}
+
+@keyframes nav-overlay-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-preview-demo {
+  scroll-behavior: smooth;
+}
+
+.pain-quote {
+  @apply bg-white text-charcoal rounded-xl border border-plum/10 p-5 shadow-sm transition-all duration-300;
+}
+
+.pain-quote:hover {
+  @apply -translate-y-1 shadow-lg;
+}
+
+.pain-quote::before {
+  content: "\201C";
+  @apply block font-serif text-3xl text-gold leading-none mb-1;
+}
+
+.pain-quote p {
+  @apply font-serif italic text-sm sm:text-base leading-relaxed text-charcoal/85 m-0;
+}
+
+.method-step {
+  @apply relative bg-white text-charcoal rounded-2xl border border-plum/10 p-6 shadow-sm transition-all duration-300;
+}
+
+.method-step:hover {
+  @apply -translate-y-1 shadow-lg;
+}
+
+.method-step::before {
+  content: attr(data-step);
+  position: absolute;
+  top: -0.75rem;
+  left: -0.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: var(--color-plum);
+  color: white;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 2.5rem;
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.discipline-pill {
+  @apply inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide bg-plum/10 text-plum border border-plum/15;
+}

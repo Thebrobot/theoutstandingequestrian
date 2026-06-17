@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogCTA from "../../components/BlogCTA.astro";
+import {
+  blogPosts,
+  formatBlogDate,
+  getBlogPost,
+  type BlogBlock,
+} from "../../data/blog";
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const post = getBlogPost(slug!);
+
+if (!post) {
+  return Astro.redirect("/blog");
+}
+
+const categoryColors: Record<typeof post.category, string> = {
+  Groundwork: "bg-plum/10 text-plum",
+  Mounted: "bg-gold/15 text-charcoal",
+  Mindset: "bg-cream-dark text-plum-dark",
+};
+---
+
+<BaseLayout title={post.title} description={post.excerpt}>
+  <article class="py-16 sm:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <header class="mb-10">
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-2 text-sm font-medium text-plum hover:text-gold transition-colors mb-6"
+        >
+          &larr; Back to blog
+        </a>
+
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <span class:list={["text-xs font-semibold uppercase tracking-wide rounded-full px-3 py-1", categoryColors[post.category]]}>
+            {post.category}
+          </span>
+          <span class="text-sm text-charcoal/50">{post.readTime}</span>
+          <span class="text-charcoal/30">&middot;</span>
+          <time datetime={post.publishedAt} class="text-sm text-charcoal/50">
+            {formatBlogDate(post.publishedAt)}
+          </time>
+        </div>
+
+        <h1 class="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-charcoal leading-tight mb-5">
+          {post.title}
+        </h1>
+
+        <p class="text-lg sm:text-xl text-charcoal/70 leading-relaxed border-l-4 border-gold pl-5">
+          {post.excerpt}
+        </p>
+      </header>
+
+      <figure class="mb-10 rounded-2xl overflow-hidden border border-plum/10 shadow-lg shadow-plum/5">
+        <img
+          src={post.image}
+          alt={post.imageAlt}
+          class="aspect-video w-full object-cover"
+          loading="eager"
+        />
+      </figure>
+
+      <div class="space-y-6 text-charcoal/80 leading-relaxed">
+        {
+          post.blocks.map((block: BlogBlock) => {
+            if (block.type === "h2") {
+              return (
+                <h2 class="font-serif text-2xl font-bold text-charcoal pt-4">
+                  {block.text}
+                </h2>
+              );
+            }
+            if (block.type === "ul") {
+              return (
+                <ul class="list-disc pl-6 space-y-2 marker:text-gold">
+                  {block.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              );
+            }
+            return <p>{block.text}</p>;
+          })
+        }
+      </div>
+
+      <BlogCTA />
+    </div>
+  </article>
+</BaseLayout>

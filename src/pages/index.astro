@@ -1,17 +1,494 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CTAButton from "../components/CTAButton.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import WeekCard from "../components/WeekCard.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import { weeks } from "../data/weeks";
+import { testimonials } from "../data/testimonials";
+import { INSTRUCTOR_NAME, BRAND_NAME } from "../config";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Home"
+  description="Stop guessing. Start growing. Structured equestrian training for solo riders."
+>
+  <!-- Hero -->
+  <section class="relative text-white overflow-hidden min-h-[85vh] flex items-center">
+    <video
+      class="absolute inset-0 w-full h-full object-cover"
+      autoplay
+      muted
+      loop
+      playsinline
+      aria-hidden="true"
+    >
+      <source src="/videos/dressage-hero.mp4" type="video/mp4" />
+    </video>
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-plum/90 via-plum/75 to-plum/50"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(201,168,76,0.2),transparent_50%)]"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,rgba(201,168,76,0.12),transparent_40%)]"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-18 sm:py-24 w-full text-center">
+      <div class="max-w-2xl mx-auto">
+        <p
+          class="inline-flex items-center gap-2 text-xs sm:text-sm tracking-wide uppercase bg-gold text-charcoal font-semibold rounded-full px-3 py-1.5 mb-5"
+        >
+          <span class="w-2 h-2 rounded-full bg-plum"></span>
+          Enrollment currently open
+        </p>
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+          Stop Guessing.<br />
+          <span class="text-gold">Start Growing.</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-cream/90 mb-8 leading-relaxed">
+          A six-week program that teaches you to ride with intention, communicate clearly with
+          your horse, and build real progress even when you train alone.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 mb-6 justify-center">
+          <CTAButton href="/enroll" variant="gold" size="lg">Claim Your Spot</CTAButton>
+          <CTAButton href="#course-preview" variant="light" size="lg">
+            Explore the Program
+          </CTAButton>
+        </div>
+        <div class="grid grid-cols-3 gap-4 max-w-lg mx-auto pt-4 border-t border-gold/30">
+          <div>
+            <p class="text-2xl sm:text-3xl font-bold text-gold">100+</p>
+            <p class="text-cream/80 text-xs sm:text-sm">Riders coached</p>
+          </div>
+          <div>
+            <p class="text-2xl sm:text-3xl font-bold text-gold">6</p>
+            <p class="text-cream/80 text-xs sm:text-sm">Weeks structured</p>
+          </div>
+          <div>
+            <p class="text-2xl sm:text-3xl font-bold text-gold">3</p>
+            <p class="text-cream/80 text-xs sm:text-sm">Core pillars</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof Strip -->
+  <section class="section-white border-y border-plum/10 py-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left mb-8">
+        <div>
+          <p class="text-sm uppercase tracking-[0.2em] text-gold font-semibold mb-1">Built For</p>
+          <p class="text-charcoal/80">Dressage, eventing, and hunter/jumper riders</p>
+        </div>
+        <div>
+          <p class="text-sm uppercase tracking-[0.2em] text-gold font-semibold mb-1">Training Style</p>
+          <p class="text-charcoal/80">Reward-based, practical, and rider-friendly</p>
+        </div>
+        <div>
+          <p class="text-sm uppercase tracking-[0.2em] text-gold font-semibold mb-1">Outcome</p>
+          <p class="text-charcoal/80">Calmer rides, clearer aids, consistent progress</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap justify-center md:justify-start gap-2">
+        <span class="discipline-pill">Dressage</span>
+        <span class="discipline-pill">Eventing</span>
+        <span class="discipline-pill">Hunter/Jumper</span>
+        <span class="discipline-pill">Solo Riders</span>
+        <span class="discipline-pill">Adult Amateurs</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem / Empathy -->
+  <section class="section-plum py-16 sm:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <SectionHeader
+            eyebrow="Sound familiar?"
+            heading="You love your horse. You're putting in the rides. But something isn't clicking."
+            theme="dark"
+          />
+          <p class="mt-6 text-lg text-cream/85 leading-relaxed">
+            Renew SOLO gives you a structured path — groundwork, riding, and mental fitness — so every
+            session has a purpose and every week builds on the last.
+          </p>
+          <p class="mt-4 font-serif italic text-gold text-xl leading-relaxed">
+            You don&apos;t need more random tips. You need a system that actually sticks.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <blockquote class="pain-quote sm:col-span-2">
+            <p>I reach for the rein — even when I know the answer should come from my leg.</p>
+          </blockquote>
+          <blockquote class="pain-quote">
+            <p>I feel the stress building in the saddle, even when I know better.</p>
+          </blockquote>
+          <blockquote class="pain-quote">
+            <p>My rewards are all over the place, and my horse isn&apos;t sure what I&apos;m asking.</p>
+          </blockquote>
+          <blockquote class="pain-quote">
+            <p>I show up to ride without thinking about how my horse&apos;s day — or body — is feeling.</p>
+          </blockquote>
+          <blockquote class="pain-quote">
+            <p>I&apos;m guessing at pole distances and wondering why my progress feels so slow.</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Free Training -->
+  <section class="section-white py-16 sm:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div class="order-2 lg:order-1">
+          <div class="relative">
+            <div
+              class="absolute -inset-3 bg-plum/10 rounded-2xl -rotate-2 -z-10"
+              aria-hidden="true"
+            >
+            </div>
+            <div class="rounded-2xl overflow-hidden border-2 border-plum/15 shadow-xl">
+              <img
+                src="/images/oe-hero-training.png"
+                alt="Rider working with a calm horse in an outdoor arena"
+                class="aspect-[4/5] sm:aspect-[16/12] w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-2">Free training</p>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal mb-4 leading-tight">
+            Ride with more clarity <span class="italic text-plum">this week</span>
+          </h2>
+          <p class="text-charcoal/70 leading-relaxed mb-6">
+            Start with a free mini-training on leg-to-hand connection and intentional warm-ups.
+            Build confidence before you commit to the full program.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <CTAButton href="#waitlist-form" variant="gold">Get Free Training</CTAButton>
+            <CTAButton href="/enroll" variant="secondary">See Full Program</CTAButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Method -->
+  <section class="section-plum py-16 sm:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <SectionHeader
+        eyebrow="The method"
+        heading="Learn → Practice → Progress"
+        subtext="Three steps, repeated every week, that turn instruction into real improvement."
+        align="center"
+        decorative={true}
+        theme="dark"
+        class="mb-14"
+      />
+      <div class="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
+        <div
+          class="hidden md:block absolute top-10 left-[18%] right-[18%] h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent"
+          aria-hidden="true"
+        >
+        </div>
+        <div class="method-step mt-4 md:mt-0" data-step="1">
+          <h3 class="font-serif text-xl font-bold text-charcoal mb-2 pt-2">Learn</h3>
+          <p class="text-charcoal/70 text-sm leading-relaxed">
+            Watch clear video lessons covering groundwork, mounted exercises, and mental fitness for
+            the week.
+          </p>
+        </div>
+        <div class="method-step mt-4 md:mt-0" data-step="2">
+          <h3 class="font-serif text-xl font-bold text-charcoal mb-2 pt-2">Practice</h3>
+          <p class="text-charcoal/70 text-sm leading-relaxed">
+            Take each exercise to your barn. Work at your own pace with reward-based training
+            tailored to your horse.
+          </p>
+        </div>
+        <div class="method-step mt-4 md:mt-0" data-step="3">
+          <h3 class="font-serif text-xl font-bold text-charcoal mb-2 pt-2">Progress</h3>
+          <p class="text-charcoal/70 text-sm leading-relaxed">
+            Each week builds on the last — from shoulder-over and breath control to jump courses
+            and celebration habits that stick.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Offer Stack -->
+  <section class="section-white py-16 sm:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <SectionHeader
+        eyebrow="Everything included"
+        heading="A complete training system, not random tips"
+        subtext="Renew SOLO gives you the exact roadmap, accountability tools, and support you need."
+        align="center"
+        decorative={true}
+        class="mb-12"
+      />
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl border border-plum/10 p-6 shadow-sm card-lift">
+          <p class="text-xs font-bold uppercase tracking-[0.15em] text-gold mb-2">Core Program</p>
+          <h3 class="font-serif text-xl font-bold text-charcoal mb-3">Six-Week Curriculum</h3>
+          <ul class="space-y-2 text-charcoal/75 text-sm">
+            <li class="flex gap-2"><span class="text-gold">✦</span> Groundwork and mounted exercises each week</li>
+            <li class="flex gap-2"><span class="text-gold">✦</span> Clear focus goals for every ride session</li>
+            <li class="flex gap-2"><span class="text-gold">✦</span> Progressive structure that builds confidence</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl border border-plum/10 p-6 shadow-sm card-lift lg:translate-y-4">
+          <p class="text-xs font-bold uppercase tracking-[0.15em] text-gold mb-2">Tools</p>
+          <h3 class="font-serif text-xl font-bold text-charcoal mb-3">Rider Support Assets</h3>
+          <ul class="space-y-2 text-charcoal/75 text-sm">
+            <li class="flex gap-2"><span class="text-gold">✦</span> Printable checklists and session planners</li>
+            <li class="flex gap-2"><span class="text-gold">✦</span> Mental fitness prompts for consistency</li>
+            <li class="flex gap-2"><span class="text-gold">✦</span> Repeatable routines for solo training days</li>
+          </ul>
+        </div>
+        <div class="bg-plum rounded-2xl border-2 border-gold/30 p-6 shadow-lg text-white lg:-translate-y-2">
+          <p class="text-xs font-bold uppercase tracking-[0.15em] text-gold mb-2">Bonus</p>
+          <h3 class="font-serif text-xl font-bold mb-3">Community and Momentum</h3>
+          <ul class="space-y-2 text-white/80 text-sm mb-6">
+            <li class="flex gap-2"><span class="text-gold">✦</span> Shared rider wins and accountability</li>
+            <li class="flex gap-2"><span class="text-gold">✦</span> Motivation when progress feels slow</li>
+            <li class="flex gap-2"><span class="text-gold">✦</span> Guidance to stay consistent through setbacks</li>
+          </ul>
+          <CTAButton href="/enroll" variant="gold" class="w-full">Enroll in Renew SOLO</CTAButton>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Course Preview -->
+  <section id="course-preview" class="section-plum py-16 sm:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <SectionHeader
+        eyebrow="Inside the course"
+        heading="Six weeks of structured training"
+        subtext="Every week combines groundwork, mounted work, and mental fitness."
+        align="center"
+        decorative={true}
+        theme="dark"
+        class="mb-12"
+      />
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {weeks.map((week) => (
+          <WeekCard
+            number={week.number}
+            title={week.title}
+            teaser={week.teaser}
+            locked={true}
+          />
+        ))}
+      </div>
+      <div class="text-center mt-10">
+        <CTAButton href="/enroll" variant="gold" size="lg">Get Instant Access</CTAButton>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instructor -->
+  <section class="section-white py-16 sm:py-24 overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-0 items-center">
+        <div class="lg:col-span-5 relative mx-auto lg:mx-0 w-full max-w-xs lg:max-w-none">
+          <div
+            class="absolute -inset-4 bg-plum/10 rounded-2xl rotate-3"
+            aria-hidden="true"
+          >
+          </div>
+          <div class="relative rounded-2xl border-2 border-gold/30 overflow-hidden shadow-xl">
+            <img
+              src="/images/oe-instructor-portrait.png"
+              alt={`${INSTRUCTOR_NAME}, equestrian instructor`}
+              class="w-full aspect-[4/5] object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="lg:col-span-7 lg:-ml-10 relative z-10">
+          <div class="bg-white rounded-2xl border border-plum/10 p-8 sm:p-10 shadow-lg">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-2">
+              Meet your instructor
+            </p>
+            <h2 class="font-serif text-3xl font-bold text-charcoal mb-4">{INSTRUCTOR_NAME}</h2>
+            <p class="font-serif italic text-plum text-lg leading-relaxed mb-4">
+              &ldquo;Every ride starts with intention.&rdquo;
+            </p>
+            <p class="text-charcoal/70 leading-relaxed mb-5">
+              {INSTRUCTOR_NAME} combines classical groundwork, clear mounted progressions, and mental
+              fitness — because the best riders train their minds as deliberately as their bodies.
+            </p>
+            <ul class="space-y-2 text-sm text-charcoal/75">
+              <li class="flex gap-2"><span class="text-gold font-bold">—</span> Structured instruction designed for solo riders</li>
+              <li class="flex gap-2"><span class="text-gold font-bold">—</span> Focused on confidence, timing, and horse-rider communication</li>
+              <li class="flex gap-2"><span class="text-gold font-bold">—</span> Practical tools you can apply in your next ride</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section-plum py-16 sm:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <SectionHeader heading="Riders like you" align="center" decorative={true} theme="dark" class="mb-12" />
+      <div class="relative bg-white text-charcoal rounded-2xl p-8 sm:p-10 mb-8 overflow-hidden shadow-xl">
+        <div
+          class="absolute top-0 right-0 w-48 h-48 bg-plum/10 rounded-full blur-3xl"
+          aria-hidden="true"
+        >
+        </div>
+        <p class="text-plum text-xs uppercase tracking-[0.2em] font-semibold mb-3 relative">
+          Featured rider story
+        </p>
+        <blockquote class="editorial-quote font-serif text-xl sm:text-2xl leading-relaxed relative max-w-3xl text-charcoal">
+          Before Renew SOLO I felt scattered and second-guessed every ride. Now I have a clear plan
+          every week, and my horse feels more relaxed and responsive than ever.
+        </blockquote>
+        <p class="mt-4 text-charcoal/60 text-sm relative">— Adult Amateur, Eventing Rider</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        {testimonials.map((t) => <TestimonialCard {...t} />)}
+      </div>
+      <div class="relative rounded-2xl border-2 border-gold/20 overflow-hidden shadow-lg">
+        <img
+          src="/images/oe-community-riders.png"
+          alt="Group of riders with their horses in an arena"
+          class="aspect-[21/9] w-full object-cover"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-plum/70 via-plum/20 to-transparent flex items-end">
+          <p class="p-6 font-serif italic text-white text-lg sm:text-xl">
+            A community of riders committed to growing with intention.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Urgency CTA -->
+  <section class="section-white py-16 sm:py-20 border-y border-plum/10">
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <p class="text-plum uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-3">
+        Limited enrollment window
+      </p>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal mb-4 leading-tight">
+        Build your confident, consistent training plan <span class="italic text-plum">now</span>
+      </h2>
+      <p class="text-charcoal/70 mb-8 max-w-2xl mx-auto">
+        Join {BRAND_NAME} today and get immediate access to the full six-week system.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <CTAButton href="/enroll" variant="primary" size="lg">Enroll in Renew SOLO</CTAButton>
+        <CTAButton href="#waitlist-form" variant="secondary" size="lg">
+          Join Waitlist Updates
+        </CTAButton>
+      </div>
+    </div>
+  </section>
+
+  <!-- Email Opt-in -->
+  <section id="waitlist-form" class="section-plum py-16 sm:py-20 scroll-mt-20">
+    <div class="max-w-xl mx-auto px-4 sm:px-6 text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-2">Stay connected</p>
+      <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-2">Stay in the loop</h2>
+      <p class="text-cream/80 mb-6">Get training tips and course updates delivered to your inbox.</p>
+
+      <form id="waitlist-form-el" class="flex flex-col sm:flex-row gap-3" novalidate>
+        <input
+          type="text"
+          id="waitlist-firstName"
+          name="firstName"
+          placeholder="First name"
+          required
+          class="flex-1 rounded-lg px-4 py-2.5 text-charcoal focus:outline-none focus:ring-2 focus:ring-gold/50"
+        />
+        <input
+          type="email"
+          id="waitlist-email"
+          name="email"
+          placeholder="Email address"
+          required
+          class="flex-1 rounded-lg px-4 py-2.5 text-charcoal focus:outline-none focus:ring-2 focus:ring-gold/50"
+        />
+        <button
+          type="submit"
+          id="waitlist-btn"
+          class="bg-gold text-charcoal font-semibold rounded-lg px-6 py-2.5 hover:bg-gold/90 transition-colors shrink-0"
+        >
+          Subscribe
+        </button>
+      </form>
+      <p id="waitlist-error" class="hidden mt-3 text-red-600 text-sm"></p>
+      <p id="waitlist-success" class="hidden mt-3 text-gold text-sm font-medium">
+        You&apos;re on the list! Check your inbox soon.
+      </p>
+      <!-- TODO: connect to email marketing list or GHL tag -->
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const waitlistForm = document.getElementById("waitlist-form-el");
+  const waitlistBtn = document.getElementById("waitlist-btn");
+  const waitlistError = document.getElementById("waitlist-error");
+  const waitlistSuccess = document.getElementById("waitlist-success");
+
+  waitlistForm?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    waitlistError.classList.add("hidden");
+    waitlistSuccess.classList.add("hidden");
+
+    const firstName = document.getElementById("waitlist-firstName").value.trim();
+    const email = document.getElementById("waitlist-email").value.trim();
+
+    if (!firstName || !email) {
+      waitlistError.textContent = "Please enter your name and email.";
+      waitlistError.classList.remove("hidden");
+      return;
+    }
+
+    waitlistBtn.disabled = true;
+    waitlistBtn.textContent = "Subscribing…";
+
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ firstName, email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        waitlistError.textContent = data.error ?? "Something went wrong.";
+        waitlistError.classList.remove("hidden");
+        return;
+      }
+
+      waitlistSuccess.classList.remove("hidden");
+      waitlistForm.reset();
+    } catch {
+      waitlistError.textContent = "Network error. Please try again.";
+      waitlistError.classList.remove("hidden");
+    } finally {
+      waitlistBtn.disabled = false;
+      waitlistBtn.textContent = "Subscribe";
+    }
+  });
+</script>

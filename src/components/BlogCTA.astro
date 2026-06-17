@@ -1,0 +1,32 @@
+---
+import CTAButton from "./CTAButton.astro";
+import { COURSE_NAME } from "../config";
+---
+
+<aside class="mt-12 rounded-2xl bg-plum text-white p-8 sm:p-10 relative overflow-hidden">
+  <div
+    class="absolute inset-0 bg-[radial-gradient(circle_at_100%_0%,rgba(201,168,76,0.2),transparent_50%)]"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="relative">
+    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-2">
+      Ready to go deeper?
+    </p>
+    <h2 class="font-serif text-2xl sm:text-3xl font-bold mb-3 leading-tight">
+      Get the full six-week program
+    </h2>
+    <p class="text-cream/90 leading-relaxed mb-6 max-w-xl">
+      These articles introduce ideas from {COURSE_NAME} — structured weekly training with
+      groundwork, mounted work, and mental fitness you can follow on your own at your barn.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4">
+      <CTAButton href="/enroll" variant="gold" size="lg">
+        Enroll in {COURSE_NAME}
+      </CTAButton>
+      <CTAButton href="/courses/renew-solo" variant="light" size="lg">
+        Explore the Course
+      </CTAButton>
+    </div>
+  </div>
+</aside>

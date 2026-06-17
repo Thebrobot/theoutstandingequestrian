@@ -1,0 +1,53 @@
+---
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  subtext?: string;
+  align?: "left" | "center";
+  decorative?: boolean;
+  theme?: "light" | "dark";
+  class?: string;
+}
+
+const {
+  eyebrow,
+  heading,
+  subtext,
+  align = "left",
+  decorative = false,
+  theme = "light",
+  class: className = "",
+} = Astro.props;
+
+const alignClass = align === "center" ? "text-center" : "text-left";
+const subtextAlign = align === "center" ? "mx-auto" : "";
+const headingClass = theme === "dark" ? "text-white" : "text-charcoal";
+const subtextClass = theme === "dark" ? "text-cream/80" : "text-charcoal/70";
+---
+
+<div class:list={[alignClass, className]}>
+  {
+    decorative && align === "center" && (
+      <div class="section-divider mb-6" aria-hidden="true">
+        <span></span>
+      </div>
+    )
+  }
+  {
+    eyebrow && (
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-2">
+        {eyebrow}
+      </p>
+    )
+  }
+  <h2 class:list={["font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-bold mb-3 leading-tight", headingClass]}>
+    {heading}
+  </h2>
+  {
+    subtext && (
+      <p class:list={["text-lg max-w-2xl leading-relaxed", subtextClass, subtextAlign]}>
+        {subtext}
+      </p>
+    )
+  }
+</div>

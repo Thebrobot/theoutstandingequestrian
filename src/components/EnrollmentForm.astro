@@ -1,0 +1,185 @@
+---
+import { COURSE_NAME } from "../config";
+---
+
+<form id="enrollment-form" class="space-y-5" novalidate>
+  <div id="form-error" class="hidden rounded-lg bg-red-50 border border-red-200 text-red-700 px-4 py-3 text-sm" role="alert"></div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div>
+      <label for="firstName" class="block text-sm font-medium text-charcoal mb-1">
+        First Name <span class="text-red-500">*</span>
+      </label>
+      <input
+        type="text"
+        id="firstName"
+        name="firstName"
+        required
+        autocomplete="given-name"
+        class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-charcoal focus:outline-none focus:ring-2 focus:ring-plum/40 focus:border-plum"
+      />
+      <p id="firstName-error" class="hidden mt-1 text-sm text-red-600"></p>
+    </div>
+
+    <div>
+      <label for="lastName" class="block text-sm font-medium text-charcoal mb-1">
+        Last Name <span class="text-red-500">*</span>
+      </label>
+      <input
+        type="text"
+        id="lastName"
+        name="lastName"
+        required
+        autocomplete="family-name"
+        class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-charcoal focus:outline-none focus:ring-2 focus:ring-plum/40 focus:border-plum"
+      />
+      <p id="lastName-error" class="hidden mt-1 text-sm text-red-600"></p>
+    </div>
+  </div>
+
+  <div>
+    <label for="email" class="block text-sm font-medium text-charcoal mb-1">
+      Email Address <span class="text-red-500">*</span>
+    </label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      autocomplete="email"
+      class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-charcoal focus:outline-none focus:ring-2 focus:ring-plum/40 focus:border-plum"
+    />
+    <p id="email-error" class="hidden mt-1 text-sm text-red-600"></p>
+  </div>
+
+  <div>
+    <label for="phone" class="block text-sm font-medium text-charcoal mb-1">
+      Phone Number <span class="text-charcoal/40 text-xs">(optional)</span>
+    </label>
+    <input
+      type="tel"
+      id="phone"
+      name="phone"
+      autocomplete="tel"
+      class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-charcoal focus:outline-none focus:ring-2 focus:ring-plum/40 focus:border-plum"
+    />
+  </div>
+
+  <!-- TODO: Insert payment processor component here (Stripe, PayPal, etc.) -->
+  <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center text-gray-500">
+    Payment section — coming soon
+  </div>
+
+  <button
+    type="submit"
+    id="submit-btn"
+    class="w-full bg-plum text-white font-semibold rounded-lg px-6 py-3.5 hover:bg-plum-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+  >
+    Get Instant Access
+  </button>
+</form>
+
+<script define:vars={{ courseName: COURSE_NAME }}>
+  const form = document.getElementById("enrollment-form");
+  const formError = document.getElementById("form-error");
+  const submitBtn = document.getElementById("submit-btn");
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const fields = {
+    firstName: {
+      input: document.getElementById("firstName"),
+      error: document.getElementById("firstName-error"),
+      validate: (v) => (v.trim() ? null : "First name is required."),
+    },
+    lastName: {
+      input: document.getElementById("lastName"),
+      error: document.getElementById("lastName-error"),
+      validate: (v) => (v.trim() ? null : "Last name is required."),
+    },
+    email: {
+      input: document.getElementById("email"),
+      error: document.getElementById("email-error"),
+      validate: (v) => {
+        if (!v.trim()) return "Email address is required.";
+        if (!emailRegex.test(v.trim())) return "Please enter a valid email address.";
+        return null;
+      },
+    },
+  };
+
+  function showFieldError(key, message) {
+    const field = fields[key];
+    if (!field) return;
+    field.error.textContent = message;
+    field.error.classList.remove("hidden");
+    field.input.classList.add("border-red-400");
+  }
+
+  function clearFieldErrors() {
+    Object.values(fields).forEach(({ input, error }) => {
+      error.classList.add("hidden");
+      error.textContent = "";
+      input.classList.remove("border-red-400");
+    });
+    formError.classList.add("hidden");
+    formError.textContent = "";
+  }
+
+  function validateForm() {
+    clearFieldErrors();
+    let valid = true;
+
+    Object.entries(fields).forEach(([key, field]) => {
+      const message = field.validate(field.input.value);
+      if (message) {
+        showFieldError(key, message);
+        valid = false;
+      }
+    });
+
+    return valid;
+  }
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Processing…";
+
+    const payload = {
+      firstName: fields.firstName.input.value.trim(),
+      lastName: fields.lastName.input.value.trim(),
+      email: fields.email.input.value.trim(),
+      phone: document.getElementById("phone").value.trim(),
+      course: courseName,
+    };
+
+    try {
+      const response = await fetch("/api/enroll", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        formError.textContent = data.error ?? "Something went wrong. Please try again.";
+        formError.classList.remove("hidden");
+        return;
+      }
+
+      window.location.href = "/thank-you";
+    } catch {
+      formError.textContent = "Network error. Please check your connection and try again.";
+      formError.classList.remove("hidden");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Get Instant Access";
+    }
+  });
+</script>

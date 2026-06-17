@@ -1,0 +1,347 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CTAButton from "../../components/CTAButton.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import TestimonialCard from "../../components/TestimonialCard.astro";
+import { getCourseBySlug, courses } from "../../data/courses";
+import { weeks } from "../../data/weeks";
+import { testimonials } from "../../data/testimonials";
+import { CONTACT_EMAIL, INSTRUCTOR_NAME } from "../../config";
+
+export function getStaticPaths() {
+  return courses.map((course) => ({ params: { slug: course.slug } }));
+}
+
+const { slug } = Astro.params;
+const course = getCourseBySlug(slug!);
+
+if (!course) {
+  return Astro.redirect("/courses");
+}
+
+const isRenewProgram = course.category === "renew";
+const isExternalCta = course.cta.href.startsWith("mailto:");
+
+const renewWhoItsFor = [
+  "You ride solo and want a structured weekly plan you can follow at your own barn",
+  "Your horse steps into your space on the ground or ignores your leg under saddle",
+  "You know mindset matters but don't have a practice for it between rides",
+  "You want reward-based training tailored to how your individual horse communicates",
+  "You're ready for groundwork, flatwork, and jumping progressions in one cohesive program",
+];
+
+const whatsInside = [
+  {
+    title: "Video Lessons",
+    description:
+      "Clear, follow-along instruction for every groundwork, mounted, and mental fitness exercise.",
+  },
+  {
+    title: "Weekly Structure",
+    description:
+      "Six weeks of progressive training — groundwork, riding, and mental fitness woven together.",
+  },
+  {
+    title: course.slug === "renew-solo" ? "Self-Paced Access" : "Coaching Support",
+    description:
+      course.slug === "renew-solo"
+        ? "Work through the program on your schedule. Instant access from day one."
+        : course.slug === "renew-hybrid"
+          ? "Three coaching calls and bi-weekly group sessions keep you on track."
+          : "Six private coaching calls, daily messaging, and personalized ride plans.",
+  },
+  {
+    title: "Train at Your Barn",
+    description: "Every exercise is designed for solo riders working in their own arena.",
+  },
+];
+---
+
+<BaseLayout title={course.title} description={course.description}>
+  <!-- Hero -->
+  <section class="section-plum overflow-hidden">
+    {
+      course.category === "membership" && (
+        <div class="absolute inset-0">
+          <img
+            src={course.thumbnail}
+            alt=""
+            class="w-full h-full object-cover opacity-30"
+            aria-hidden="true"
+          />
+        </div>
+      )
+    }
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
+      {
+        course.highlight && (
+          <p class="text-gold font-semibold uppercase tracking-widest text-sm mb-3">
+            {course.highlight}
+          </p>
+        )
+      }
+      <p class="text-gold/80 font-semibold uppercase tracking-widest text-sm mb-3">{course.format}</p>
+      <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 max-w-3xl">
+        {course.title}
+      </h1>
+      <p class="text-lg text-white/80 max-w-2xl mb-6 leading-relaxed">{course.description}</p>
+      {
+        course.price && (
+          <p class="text-3xl font-bold text-gold mb-6">
+            {course.price}
+            {course.priceNote && (
+              <span class="text-lg text-white/70 font-normal ml-2">{course.priceNote}</span>
+            )}
+          </p>
+        )
+      }
+      <div class="flex flex-wrap gap-3 mb-8">
+        <span class="bg-white/10 text-white/90 text-sm px-3 py-1 rounded-full">{course.format}</span>
+        {
+          isRenewProgram && (
+            <span class="bg-white/10 text-white/90 text-sm px-3 py-1 rounded-full">6 modules</span>
+          )
+        }
+      </div>
+      {
+        isExternalCta ? (
+          <a
+            href={course.cta.href}
+            class="inline-block font-semibold rounded-lg transition-colors px-8 py-4 text-lg bg-gold text-charcoal hover:bg-gold/90"
+          >
+            {course.cta.label}
+          </a>
+        ) : (
+          <CTAButton href={course.cta.href} variant="primary" size="lg">
+            {course.cta.label}
+          </CTAButton>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section-white py-16 sm:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <SectionHeader eyebrow="What's included" heading={`Everything in ${course.title}`} />
+      <ul class="mt-8 space-y-4">
+        {
+          course.features.map((feature) => (
+            <li class="flex gap-3 text-charcoal/80">
+              <svg
+                class="w-5 h-5 text-gold shrink-0 mt-0.5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              {feature}
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-8 text-charcoal/70 bg-cream rounded-lg p-4 text-sm">
+        <span class="font-semibold text-charcoal">Best for:</span> {course.bestFor}
+      </p>
+    </div>
+  </section>
+
+  {
+    isRenewProgram && (
+      <>
+        <section class="section-plum py-16 sm:py-20">
+          <div class="max-w-3xl mx-auto px-4 sm:px-6">
+            <SectionHeader eyebrow="Is this for you?" heading="This course is for you if…" theme="dark" />
+            <ul class="mt-8 space-y-4">
+              {
+                renewWhoItsFor.map((item) => (
+                  <li class="flex gap-3 text-cream/85">
+                    <svg
+                      class="w-5 h-5 text-gold shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    {item}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </section>
+
+        <section class="section-white py-16 sm:py-20">
+              heading="What you'll learn — week by week"
+              subtext="Groundwork, mounted work, and mental fitness in every week."
+              align="center"
+              class="mb-12"
+            />
+            <div class="space-y-8">
+              {
+                weeks.map((week) => (
+                  <div class="bg-cream rounded-xl border border-gray-200 p-6 sm:p-8">
+                    <div class="flex items-start gap-4">
+                      <span class="shrink-0 w-10 h-10 bg-plum text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        {week.number}
+                      </span>
+                      <div>
+                        <h3 class="font-serif text-xl font-bold text-charcoal mb-2">
+                          {week.title}
+                        </h3>
+                        <p class="text-charcoal/70 leading-relaxed mb-4">{week.description}</p>
+                        <div class="flex flex-wrap gap-2">
+                          <span class="text-xs bg-white text-charcoal/60 px-2 py-1 rounded">
+                            {week.topics.groundwork}
+                          </span>
+                          <span class="text-xs bg-white text-charcoal/60 px-2 py-1 rounded">
+                            {week.topics.mounted}
+                          </span>
+                          {
+                            week.topics.mentalFitness && (
+                              <span class="text-xs bg-white text-charcoal/60 px-2 py-1 rounded">
+                                {week.topics.mentalFitness}
+                              </span>
+                            )
+                          }
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </section>
+
+        <section class="section-plum py-16 sm:py-20">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <SectionHeader
+              eyebrow="Program details"
+              heading="Everything you need to train with intention"
+              align="center"
+              theme="dark"
+              class="mb-12"
+            />
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {
+                whatsInside.map((item) => (
+                  <div class="text-center p-6 rounded-xl border border-gray-100 bg-white">
+                    <div class="w-12 h-12 bg-plum/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg
+                        class="w-6 h-6 text-plum"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
+                    <h3 class="font-serif text-lg font-bold text-charcoal mb-2">{item.title}</h3>
+                    <p class="text-sm text-charcoal/70">{item.description}</p>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </section>
+
+        <section class="section-white py-16 sm:py-20">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <SectionHeader
+              eyebrow="Student stories"
+              heading="What riders are saying"
+              align="center"
+              class="mb-12"
+            />
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {testimonials.map((t) => <TestimonialCard {...t} />)}
+            </div>
+          </div>
+        </section>
+
+        <section class="section-plum py-16 sm:py-20">
+          <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+              <div class="w-48 h-48 shrink-0 rounded-full overflow-hidden border-2 border-gold/40">
+                <img
+                  src="/images/oe-instructor-portrait.png"
+                  alt={INSTRUCTOR_NAME}
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <p class="text-sm font-semibold uppercase tracking-widest text-gold mb-2">
+                  Your instructor
+                </p>
+                <h2 class="font-serif text-3xl font-bold text-white mb-4">{INSTRUCTOR_NAME}</h2>
+                <p class="text-cream/85 leading-relaxed mb-4">
+                  {INSTRUCTOR_NAME} teaches riders to communicate with their horses in the language
+                  each horse already speaks — through reward-based training, clear intention, and
+                  empathy for what the horse is experiencing before every session.
+                </p>
+                <p class="text-cream/85 leading-relaxed">
+                  Her approach weaves mental fitness into every week of training, because riding is
+                  80% psychology. From shoulder-over groundwork to jump courses with individualized
+                  rewards, every exercise is designed to build connection, responsiveness, and
+                  confidence — for both horse and rider.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </>
+    )
+  }
+
+  <!-- Pricing CTA -->
+  <section class="section-plum py-16 sm:py-20">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 text-center">
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold mb-2">{course.title}</h2>
+      {
+        course.price && (
+          <p class="text-4xl font-bold text-gold mb-2">
+            {course.price}
+            {course.priceNote && (
+              <span class="text-lg text-white/70 font-normal">{course.priceNote}</span>
+            )}
+          </p>
+        )
+      }
+      <p class="text-white/70 mb-6">{course.bestFor}</p>
+      {
+        isExternalCta ? (
+          <a
+            href={course.cta.href}
+            class="inline-block font-semibold rounded-lg transition-colors px-8 py-4 text-lg bg-gold text-charcoal hover:bg-gold/90 mb-6"
+          >
+            {course.cta.label}
+          </a>
+        ) : (
+          <CTAButton href={course.cta.href} variant="light" size="lg" class="mb-6">
+            {course.cta.label}
+          </CTAButton>
+        )
+      }
+      <p class="text-white/70 text-sm">
+        Questions?{" "}
+        <a href={`mailto:${CONTACT_EMAIL}`} class="text-gold hover:underline">
+          Email us
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
