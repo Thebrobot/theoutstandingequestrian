@@ -22,43 +22,45 @@ if (!post) {
 }
 
 const categoryColors: Record<typeof post.category, string> = {
-  Groundwork: "bg-plum/10 text-plum",
-  Mounted: "bg-gold/15 text-charcoal",
-  Mindset: "bg-cream-dark text-plum-dark",
+  Groundwork: "bg-white/15 text-white",
+  Mounted: "bg-gold/25 text-charcoal",
+  Mindset: "bg-white/20 text-white",
 };
 ---
 
 <BaseLayout title={post.title} description={post.excerpt}>
-  <article class="py-16 sm:py-20">
+  <section id="page-hero" class="section-plum relative overflow-hidden min-h-[45vh] flex items-end">
+    <div class="hero-content max-w-3xl mx-auto px-4 sm:px-6 pb-12 sm:pb-16 w-full">
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-2 text-sm font-medium text-gold hover:text-gold-light transition-colors mb-6"
+      >
+        &larr; Back to blog
+      </a>
+
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class:list={["text-xs font-semibold uppercase tracking-wide rounded-full px-3 py-1", categoryColors[post.category]]}>
+          {post.category}
+        </span>
+        <span class="text-sm text-white/60">{post.readTime}</span>
+        <span class="text-white/30">&middot;</span>
+        <time datetime={post.publishedAt} class="text-sm text-white/60">
+          {formatBlogDate(post.publishedAt)}
+        </time>
+      </div>
+
+      <h1 class="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-white leading-tight mb-5">
+        {post.title}
+      </h1>
+
+      <p class="text-lg sm:text-xl text-cream/85 leading-relaxed border-l-4 border-gold pl-5">
+        {post.excerpt}
+      </p>
+    </div>
+  </section>
+
+  <article class="py-12 sm:py-16">
     <div class="max-w-3xl mx-auto px-4 sm:px-6">
-      <header class="mb-10">
-        <a
-          href="/blog"
-          class="inline-flex items-center gap-2 text-sm font-medium text-plum hover:text-gold transition-colors mb-6"
-        >
-          &larr; Back to blog
-        </a>
-
-        <div class="flex flex-wrap items-center gap-3 mb-4">
-          <span class:list={["text-xs font-semibold uppercase tracking-wide rounded-full px-3 py-1", categoryColors[post.category]]}>
-            {post.category}
-          </span>
-          <span class="text-sm text-charcoal/50">{post.readTime}</span>
-          <span class="text-charcoal/30">&middot;</span>
-          <time datetime={post.publishedAt} class="text-sm text-charcoal/50">
-            {formatBlogDate(post.publishedAt)}
-          </time>
-        </div>
-
-        <h1 class="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-charcoal leading-tight mb-5">
-          {post.title}
-        </h1>
-
-        <p class="text-lg sm:text-xl text-charcoal/70 leading-relaxed border-l-4 border-gold pl-5">
-          {post.excerpt}
-        </p>
-      </header>
-
       <figure class="mb-10 rounded-2xl overflow-hidden border border-plum/10 shadow-lg shadow-plum/5">
         <img
           src={post.image}

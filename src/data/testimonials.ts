@@ -19,7 +19,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Six weeks of structure I could actually follow on my own. The reward-based approach fits my horse perfectly — we're both enjoying riding again.",
+      "Six weeks of structure I could actually follow on my own. The reward-based approach fits my horse perfectly, and we're both enjoying riding again.",
     name: "Amanda K.",
     discipline: "Hunter/Jumper",
   },

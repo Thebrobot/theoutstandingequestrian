@@ -26,3 +26,4 @@ pnpm-debug.log*
 
 # source video files (site assets live in public/videos/)
 /videos/
+.vercel

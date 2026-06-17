@@ -36,7 +36,7 @@ export const courses: Course[] = [
     slug: "renew-solo",
     title: "Renew SOLO",
     description:
-      "Self-paced, lifetime access. A six-week training reset with downloadable ride plans — reset and refocus at your own pace.",
+      "Self-paced, lifetime access. A six-week training reset with downloadable ride plans. Reset and refocus at your own pace.",
     format: "6 Modules • Self-Paced",
     thumbnail: "/images/course-renew-solo-placeholder.jpg",
     category: "renew",
@@ -121,12 +121,12 @@ export const courses: Course[] = [
     title: "On Track",
     subtitle: "1:1 Coaching Membership for Serious Riders",
     description:
-      "Premium monthly coaching with Davina — group calls, private sessions, and priority community support.",
+      "Premium monthly coaching with Davina: group calls, private sessions, and priority community support.",
     format: "Monthly Membership",
     thumbnail: "/images/course-on-track.jpg",
     category: "membership",
     price: "$499",
-    priceNote: "/ Month — 3, 6, 12 month commitment bonuses",
+    priceNote: "/ Month. 3, 6, 12 month commitment bonuses",
     features: [
       "2 group coaching calls / month with Live Q & A",
       "8x 1:1 calls with Davina",

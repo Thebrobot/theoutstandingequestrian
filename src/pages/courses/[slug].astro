@@ -39,7 +39,7 @@ const whatsInside = [
   {
     title: "Weekly Structure",
     description:
-      "Six weeks of progressive training — groundwork, riding, and mental fitness woven together.",
+      "Six weeks of progressive training: groundwork, riding, and mental fitness woven together.",
   },
   {
     title: course.slug === "renew-solo" ? "Self-Paced Access" : "Coaching Support",
@@ -59,7 +59,7 @@ const whatsInside = [
 
 <BaseLayout title={course.title} description={course.description}>
   <!-- Hero -->
-  <section class="section-plum overflow-hidden">
+  <section id="page-hero" class="section-plum relative overflow-hidden min-h-[55vh] flex items-end">
     {
       course.category === "membership" && (
         <div class="absolute inset-0">
@@ -72,7 +72,7 @@ const whatsInside = [
         </div>
       )
     }
-    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
+    <div class="hero-content max-w-6xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20 w-full">
       {
         course.highlight && (
           <p class="text-gold font-semibold uppercase tracking-widest text-sm mb-3">
@@ -180,7 +180,9 @@ const whatsInside = [
         </section>
 
         <section class="section-white py-16 sm:py-20">
-              heading="What you'll learn — week by week"
+          <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <SectionHeader
+              heading="What you'll learn: week by week"
               subtext="Groundwork, mounted work, and mental fitness in every week."
               align="center"
               class="mb-12"
@@ -290,14 +292,14 @@ const whatsInside = [
                 <h2 class="font-serif text-3xl font-bold text-white mb-4">{INSTRUCTOR_NAME}</h2>
                 <p class="text-cream/85 leading-relaxed mb-4">
                   {INSTRUCTOR_NAME} teaches riders to communicate with their horses in the language
-                  each horse already speaks — through reward-based training, clear intention, and
+                  each horse already speaks, through reward-based training, clear intention, and
                   empathy for what the horse is experiencing before every session.
                 </p>
                 <p class="text-cream/85 leading-relaxed">
                   Her approach weaves mental fitness into every week of training, because riding is
                   80% psychology. From shoulder-over groundwork to jump courses with individualized
                   rewards, every exercise is designed to build connection, responsiveness, and
-                  confidence — for both horse and rider.
+                  confidence for both horse and rider.
                 </p>
               </div>
             </div>

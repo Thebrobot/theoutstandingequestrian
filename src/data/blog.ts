@@ -20,9 +20,9 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     slug: "shoulder-over-space-bubble",
-    title: "Why Your Horse Steps Into Your Space — And How Shoulder-Over Fixes It",
+    title: "Why Your Horse Steps Into Your Space: And How Shoulder-Over Fixes It",
     excerpt:
-      "Most groundwork problems start the same way: your horse pushes into you instead of respecting your space. Shoulder-over teaches something deeper than a trick — it builds a language you both understand.",
+      "Most groundwork problems start the same way: your horse pushes into you instead of respecting your space. Shoulder-over teaches something deeper than a trick. It builds a language you both understand.",
     publishedAt: "2025-03-10",
     category: "Groundwork",
     readTime: "4 min read",
@@ -31,7 +31,7 @@ export const blogPosts: BlogPost[] = [
     blocks: [
       {
         type: "p",
-        text: "You halter up, walk to the arena, and within two minutes your horse is on top of you — nose in your pocket, shoulder drifting into your bubble, energy pushing forward when you haven't asked for anything. It's frustrating, and it feels personal. Usually, it isn't.",
+        text: "You halter up, walk to the arena, and within two minutes your horse is on top of you: nose in your pocket, shoulder drifting into your bubble, energy pushing forward when you haven't asked for anything. It's frustrating, and it feels personal. Usually, it isn't.",
       },
       {
         type: "p",
@@ -43,11 +43,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Before you worry about perfect foot placement or fancy lateral work, the first job is spatial respect. Imagine a bubble around yourself that your horse cannot enter. Every time they push their nose, shoulder, or energy into that bubble, you correct it — calmly, consistently, without moving your own feet.",
+        text: "Before you worry about perfect foot placement or fancy lateral work, the first job is spatial respect. Imagine a bubble around yourself that your horse cannot enter. Every time they push their nose, shoulder, or energy into that bubble, you correct it calmly, consistently, without moving your own feet.",
       },
       {
         type: "p",
-        text: "When they move the shoulder away correctly, you release immediately and reward in the language they actually speak. Some horses want a forehead scratch. Others want a walk break or a quiet voice. The reward isn't the point — the release is. The moment they offer the right answer, the pressure disappears.",
+        text: "When they move the shoulder away correctly, you release immediately and reward in the language they actually speak. Some horses want a forehead scratch. Others want a walk break or a quiet voice. The reward isn't the point. The release is. The moment they offer the right answer, the pressure disappears.",
       },
       {
         type: "h2",
@@ -58,13 +58,13 @@ export const blogPosts: BlogPost[] = [
         items: [
           "You stay planted; the horse moves around you, not through you.",
           "Correction is instant; reward is generous.",
-          "Early on, any sideward step counts — don't chase perfection.",
+          "Early on, any sideward step counts. Don't chase perfection.",
           "Encourage the head to come down without walking forward first.",
         ],
       },
       {
         type: "p",
-        text: "This groundwork isn't separate from your riding. The same horse who bulldozes you on the ground will lean on the rein and ignore your leg under saddle. Shoulder-over from the ground is where you teach initiation, respect, and release — skills that transfer directly when you get on.",
+        text: "This groundwork isn't separate from your riding. The same horse who bulldozes you on the ground will lean on the rein and ignore your leg under saddle. Shoulder-over from the ground is where you teach initiation, respect, and release, skills that transfer directly when you get on.",
       },
       {
         type: "p",
@@ -76,7 +76,7 @@ export const blogPosts: BlogPost[] = [
     slug: "breath-controls-your-horses-step",
     title: "Control Your Horse's Step Without Pulling or Kicking",
     excerpt:
-      "Tempo isn't something you force out of a horse — it's something you invite. Learn how breath and body size on the lunge (and under saddle) open and close the stride without a fight.",
+      "Tempo isn't something you force out of a horse. It's something you invite. Learn how breath and body size on the lunge (and under saddle) open and close the stride without a fight.",
     publishedAt: "2025-03-18",
     category: "Groundwork",
     readTime: "5 min read",
@@ -85,7 +85,7 @@ export const blogPosts: BlogPost[] = [
     blocks: [
       {
         type: "p",
-        text: "If you've ever tried to slow a horse down by pulling, or speed one up by kicking harder, you already know the ceiling on that approach. The horse either braces, gets dull, or learns to ignore you entirely. There's a quieter tool — one you're carrying with you every ride: your breath.",
+        text: "If you've ever tried to slow a horse down by pulling, or speed one up by kicking harder, you already know the ceiling on that approach. The horse either braces, gets dull, or learns to ignore you entirely. There's a quieter tool, one you're carrying with you every ride: your breath.",
       },
       {
         type: "h2",
@@ -93,7 +93,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "On the lunge, your horse can focus on your body without the complication of your seat and hands. As you inhale and open your chest, arms, and presence, the stride opens. As you exhale and draw yourself smaller — narrower chest, arms closer — the stride closes.",
+        text: "On the lunge, your horse can focus on your body without the complication of your seat and hands. As you inhale and open your chest, arms, and presence, the stride opens. As you exhale and draw yourself smaller (narrower chest, arms closer), the stride closes.",
       },
       {
         type: "p",
@@ -106,14 +106,14 @@ export const blogPosts: BlogPost[] = [
       {
         type: "ul",
         items: [
-          "Rib-cage breath — a lifted, collected feeling that asks for a shorter, more organized step.",
-          "Belly breath — a deeper, expansive breath that invites extension without chasing speed.",
+          "Rib-cage breath: a lifted, collected feeling that asks for a shorter, more organized step.",
+          "Belly breath: a deeper, expansive breath that invites extension without chasing speed.",
           "Tempo changes come from your body, not from pulling the face or pumping the leg.",
         ],
       },
       {
         type: "p",
-        text: "This isn't mystical. It's biomechanics plus attention. When your body gets bigger, your horse's step gets bigger. When you contract, they collect. The skill is sensitivity — noticing the small response and rewarding it before you ask for more.",
+        text: "This isn't mystical. It's biomechanics plus attention. When your body gets bigger, your horse's step gets bigger. When you contract, they collect. The skill is sensitivity: noticing the small response and rewarding it before you ask for more.",
       },
       {
         type: "p",
@@ -125,7 +125,7 @@ export const blogPosts: BlogPost[] = [
     slug: "put-yourself-in-your-horses-shoes",
     title: "Before You Ride: Put Yourself in Your Horse's Shoes",
     excerpt:
-      "The best riders don't start with the exercise — they start with the horse. A two-minute empathy check can save you a frustrating session and deepen your connection.",
+      "The best riders don't start with the exercise. They start with the horse. A two-minute empathy check can save you a frustrating session and deepen your connection.",
     publishedAt: "2025-04-02",
     category: "Mindset",
     readTime: "4 min read",
@@ -134,7 +134,7 @@ export const blogPosts: BlogPost[] = [
     blocks: [
       {
         type: "p",
-        text: "You drove to the barn with a plan. Shoulder-over today, maybe some pole work, definitely working on that left lead. You tack up, mount, and within ten minutes you're annoyed — the horse is \"being difficult,\" you're repeating the same aid, and the session is going nowhere.",
+        text: "You drove to the barn with a plan. Shoulder-over today, maybe some pole work, definitely working on that left lead. You tack up, mount, and within ten minutes you're annoyed. The horse is \"being difficult,\" you're repeating the same aid, and the session is going nowhere.",
       },
       {
         type: "p",
@@ -146,13 +146,13 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Before you ask anything of your horse, put yourself in their shoes — literally. Consider their day. Were they just turned out in a windy paddock? Did they stand in a stall for hours? Are they stiff on one side, sore in the back, or fresh from a week off?",
+        text: "Before you ask anything of your horse, put yourself in their shoes, literally. Consider their day. Were they just turned out in a windy paddock? Did they stand in a stall for hours? Are they stiff on one side, sore in the back, or fresh from a week off?",
       },
       {
         type: "ul",
         items: [
-          "How do they feel about this exercise — confident, confused, or anxious?",
-          "What reward do they actually want today — touch, voice, movement, or rest?",
+          "How do they feel about this exercise: confident, confused, or anxious?",
+          "What reward do they actually want today: touch, voice, movement, or rest?",
           "What would help them succeed before you add pressure?",
         ],
       },
@@ -162,7 +162,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Riding with intention doesn't mean having a rigid agenda. It means arriving present — with a plan flexible enough to meet your horse where they are. Some days that means shortening the session. Some days it means swapping exercises. The goal is always connection first, movement second.",
+        text: "Riding with intention doesn't mean having a rigid agenda. It means arriving present, with a plan flexible enough to meet your horse where they are. Some days that means shortening the session. Some days it means swapping exercises. The goal is always connection first, movement second.",
       },
       {
         type: "p",
@@ -174,7 +174,7 @@ export const blogPosts: BlogPost[] = [
     slug: "visualization-before-you-ride",
     title: "Visualization: Why 80% of Riding Happens Before You Mount",
     excerpt:
-      "The riders who look calm in the ring aren't lucky — they've already ridden the course in their head. Visualization is a trainable skill, and it changes how your body shows up for your horse.",
+      "The riders who look calm in the ring aren't lucky. They've already ridden the course in their head. Visualization is a trainable skill, and it changes how your body shows up for your horse.",
     publishedAt: "2025-04-15",
     category: "Mindset",
     readTime: "5 min read",
@@ -183,7 +183,7 @@ export const blogPosts: BlogPost[] = [
     blocks: [
       {
         type: "p",
-        text: "Ask any competitive rider what they do in the ten minutes before they enter the ring, and the good ones will tell you: they've already been there. They've felt the canter transition, seen the distance to the fence, rehearsed the recovery on landing. That isn't daydreaming. It's visualization — and it's one of the most underused tools in everyday riding.",
+        text: "Ask any competitive rider what they do in the ten minutes before they enter the ring, and the good ones will tell you: they've already been there. They've felt the canter transition, seen the distance to the fence, rehearsed the recovery on landing. That isn't daydreaming. It's visualization, and it's one of the most underused tools in everyday riding.",
       },
       {
         type: "h2",
@@ -191,7 +191,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "When you vividly imagine a ride — the feel of the saddle, the rhythm of the gait, the timing of your aid — your nervous system begins to respond as if you're already doing it. Muscles activate subtly. Breathing shifts. Anxiety drops because the unknown becomes familiar.",
+        text: "When you vividly imagine a ride (the feel of the saddle, the rhythm of the gait, the timing of your aid), your nervous system begins to respond as if you're already doing it. Muscles activate subtly. Breathing shifts. Anxiety drops because the unknown becomes familiar.",
       },
       {
         type: "p",
@@ -205,18 +205,18 @@ export const blogPosts: BlogPost[] = [
         type: "ul",
         items: [
           "Close your eyes for two minutes before you mount.",
-          "Walk through the session you planned — not just the highlights, but the transitions between exercises.",
+          "Walk through the session you planned, not just the highlights, but the transitions between exercises.",
           "Include one thing that might go wrong and how you'll respond calmly.",
           "Open your eyes and ride the plan you just rehearsed.",
         ],
       },
       {
         type: "p",
-        text: "You don't need a quiet meditation room. You need consistency. Two minutes before every ride beats a twenty-minute session once a month. Over six weeks, that compounds into a rider who looks prepared — because they are.",
+        text: "You don't need a quiet meditation room. You need consistency. Two minutes before every ride beats a twenty-minute session once a month. Over six weeks, that compounds into a rider who looks prepared, because they are.",
       },
       {
         type: "p",
-        text: "Renew SOLO weaves mental fitness into every week — not as an extra homework assignment, but as part of how you're taught to train. Visualization is Week 3's centerpiece, but the habit starts building from day one.",
+        text: "Renew SOLO weaves mental fitness into every week, not as an extra homework assignment, but as part of how you're taught to train. Visualization is Week 3's centerpiece, but the habit starts building from day one.",
       },
     ],
   },

@@ -17,6 +17,34 @@ html {
   scroll-behavior: smooth;
 }
 
+:root {
+  --announcement-height: 2.75rem;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --announcement-height: 2.875rem;
+  }
+}
+
+body:not(.announcement-visible) {
+  --announcement-height: 0px;
+}
+
+.nav-float {
+  top: var(--announcement-height);
+}
+
+body.announcement-visible .nav-spacer {
+  height: calc(4.5rem + var(--announcement-height));
+}
+
+@media (min-width: 640px) {
+  body.announcement-visible .nav-spacer {
+    height: calc(5rem + var(--announcement-height));
+  }
+}
+
 body {
   @apply bg-white text-charcoal font-sans antialiased;
 }
@@ -159,6 +187,61 @@ body {
   @apply bg-plum text-white shadow-sm;
 }
 
+.nav-pill-link-hero {
+  @apply text-white/80 hover:text-white;
+}
+
+.nav-pill-link-hero-active {
+  @apply bg-white/20 text-white shadow-sm backdrop-blur-sm;
+}
+
+.nav-float-pill-hero {
+  @apply bg-white/15 backdrop-blur-md border-white/20 shadow-lg shadow-black/20;
+}
+
+.nav-past-hero .nav-float-pill-hero {
+  @apply bg-white/90 border-plum/10 shadow-plum/10;
+}
+
+.nav-past-hero .nav-pill-link-hero {
+  @apply text-charcoal/70 hover:text-plum;
+}
+
+.nav-past-hero .nav-pill-link-hero-active {
+  @apply bg-plum text-white;
+}
+
+.nav-past-hero #nav-track {
+  @apply bg-plum/5 border-plum/10;
+}
+
+.nav-past-hero #mobile-menu-btn {
+  @apply text-plum hover:text-plum-dark hover:bg-plum/5;
+}
+
+.nav-past-hero .nav-logo-light {
+  @apply hidden;
+}
+
+.nav-past-hero .nav-logo-dark {
+  @apply block;
+}
+
+.nav-float-mobile {
+  animation: nav-float-drop 0.2s ease both;
+}
+
+@keyframes nav-float-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .nav-overlay-link {
   animation: nav-overlay-in 0.4s ease both;
 }
@@ -176,6 +259,10 @@ body {
 
 .nav-preview-demo {
   scroll-behavior: smooth;
+}
+
+.hero-content {
+  @apply relative pt-32 sm:pt-36;
 }
 
 .pain-quote {
@@ -221,6 +308,14 @@ body {
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
-.discipline-pill {
-  @apply inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide bg-plum/10 text-plum border border-plum/15;
+.proof-card {
+  @apply relative bg-white rounded-2xl border border-plum/10 p-6 sm:p-7 shadow-sm text-center md:text-left transition-all duration-300;
+}
+
+.proof-card:hover {
+  @apply -translate-y-1 shadow-lg;
+}
+
+.proof-card-icon {
+  @apply w-10 h-10 rounded-full bg-plum/10 text-plum flex items-center justify-center mb-4 mx-auto md:mx-0;
 }

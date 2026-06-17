@@ -17,12 +17,12 @@ export const weeks: Week[] = [
     number: 1,
     title: "Foundation & Connection",
     teaser:
-      "Learn shoulder-over from the ground and saddle — and start every session with empathy.",
+      "Learn shoulder-over from the ground and saddle, and start every session with empathy.",
     description:
-      "Build respect on the ground with shoulder-over and your \"space bubble.\" Transfer that to the saddle with leg-led initiation (not the rein). Week 1 mental fitness: put yourself in your horse's shoes — consider their day, comfort, and feelings before you ride.",
+      "Build respect on the ground with shoulder-over and your \"space bubble.\" Transfer that to the saddle with leg-led initiation (not the rein). Week 1 mental fitness: put yourself in your horse's shoes. Consider their day, comfort, and feelings before you ride.",
     topics: {
       groundwork: "Moving the shoulder over from the ground",
-      mounted: "Shoulder over under saddle — leg initiation",
+      mounted: "Shoulder over under saddle: leg initiation",
       mentalFitness: "Put yourself in your horse's shoes",
     },
   },
@@ -30,11 +30,11 @@ export const weeks: Week[] = [
     number: 2,
     title: "Breath & Rhythm",
     teaser:
-      "Control your horse's step size using breath — on the lunge and under saddle.",
+      "Control your horse's step size using breath, on the lunge and under saddle.",
     description:
-      "Open and close the stride from the ground using breath and body size. Under saddle, use rib-cage breath for collection and belly breath for extension — without pulling or kicking for tempo.",
+      "Open and close the stride from the ground using breath and body size. Under saddle, use rib-cage breath for collection and belly breath for extension, without pulling or kicking for tempo.",
     topics: {
-      groundwork: "Lunge — open and close step with breath",
+      groundwork: "Lunge: open and close step with breath",
       mounted: "Short and long step via breath",
     },
   },
@@ -44,7 +44,7 @@ export const weeks: Week[] = [
     teaser:
       "Reward training over obstacles, solve pole distances, and train your mind.",
     description:
-      "Teach self-control over cavaletti on the ground with precise halts and rewards. Under saddle, praise problem-solving over \"looking pretty\" as your horse adjusts stride. Mental fitness: visualization — because 80% of riding is psychology.",
+      "Teach self-control over cavaletti on the ground with precise halts and rewards. Under saddle, praise problem-solving over \"looking pretty\" as your horse adjusts stride. Mental fitness: visualization, because 80% of riding is psychology.",
     topics: {
       groundwork: "Reward training over cavaletti",
       mounted: "Equal distance over poles and cavaletti",
@@ -57,7 +57,7 @@ export const weeks: Week[] = [
     teaser:
       "Halt when you halt, nail a shape pattern, and reframe stress as fuel.",
     description:
-      "Groundwork walk/trot beside handler — exact position, loose lead, both sides. Mounted shape pattern: leg yield → circle → straight, prioritizing responsiveness over perfection. Reframe stress and build mental fitness through micro-stresses.",
+      "Groundwork walk/trot beside handler: exact position, loose lead, both sides. Mounted shape pattern: leg yield → circle → straight, prioritizing responsiveness over perfection. Reframe stress and build mental fitness through micro-stresses.",
     topics: {
       groundwork: "Walk/trot transitions beside handler",
       mounted: "Leg yield → circle → straight pattern",
@@ -82,7 +82,7 @@ export const weeks: Week[] = [
     teaser:
       "Free jumping, a full jump course, and learning to celebrate your wins.",
     description:
-      "Free jumping intro: chute setup, reward attempts, technique before height. Mounted jump course with individualized rewards (walk breaks, flatwork resets). Close the program by celebrating accomplishments — big and small — and building momentum for life and riding.",
+      "Free jumping intro: chute setup, reward attempts, technique before height. Mounted jump course with individualized rewards (walk breaks, flatwork resets). Close the program by celebrating accomplishments, big and small, and building momentum for life and riding.",
     topics: {
       groundwork: "Free jumping introduction",
       mounted: "Jump course with individualized rewards",

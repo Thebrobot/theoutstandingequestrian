@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import AnnouncementBar from "../components/AnnouncementBar.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import { BRAND_NAME } from "../config";
@@ -8,12 +9,14 @@ interface Props {
   title?: string;
   description?: string;
   minimal?: boolean;
+  heroNav?: boolean;
 }
 
 const {
   title = BRAND_NAME,
   description = "Premium equestrian education for riders who want to grow with intention.",
   minimal = false,
+  heroNav = !minimal,
 } = Astro.props;
 
 const pageTitle = title === BRAND_NAME ? title : `${title} | ${BRAND_NAME}`;
@@ -34,7 +37,7 @@ const pageTitle = title === BRAND_NAME ? title : `${title} | ${BRAND_NAME}`;
     />
     <title>{pageTitle}</title>
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class:list={["min-h-screen flex flex-col", !minimal && "announcement-visible"]}>
     {minimal ? (
       <header class="border-b border-gray-200 bg-white">
         <div class="max-w-3xl mx-auto px-4 py-4">
@@ -42,7 +45,10 @@ const pageTitle = title === BRAND_NAME ? title : `${title} | ${BRAND_NAME}`;
         </div>
       </header>
     ) : (
-      <Nav />
+      <>
+        <AnnouncementBar />
+        <Nav heroNav={heroNav} />
+      </>
     )}
     <main class="flex-1">
       <slot />

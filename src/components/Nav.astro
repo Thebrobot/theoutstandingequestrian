@@ -1,89 +1,156 @@
 ---
-import { BRAND_NAME } from "../config";
+import { navLinks } from "../data/navLinks";
 import CTAButton from "./CTAButton.astro";
+import Logo from "./nav/Logo.astro";
 
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/courses", label: "Courses" },
-  { href: "/blog", label: "Blog" },
-  { href: "/about", label: "About" },
-];
+interface Props {
+  heroNav?: boolean;
+}
+
+const { heroNav = false } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string) {
+  return currentPath === href || (href !== "/" && currentPath.startsWith(href));
+}
+
+const pillClass = heroNav
+  ? "nav-float-pill-hero"
+  : "bg-white/90 backdrop-blur-md border-plum/10 shadow-lg shadow-plum/10";
 ---
 
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-plum/15 shadow-sm shadow-plum/5">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="flex items-center justify-between h-16">
-      <a href="/" class="group shrink-0">
-        <span class="font-serif text-xl font-bold text-plum group-hover:text-plum-dark transition-colors">
-          Outstanding
-        </span>
-        <span class="font-serif text-xl font-bold text-gold italic"> Equestrian</span>
-      </a>
+<header
+  id="site-nav"
+  data-hero-nav={heroNav ? "true" : undefined}
+  class:list={[
+    "nav-float fixed inset-x-0 z-50 px-4 sm:px-6 pointer-events-none transition-all duration-300",
+    heroNav ? "pt-5 sm:pt-6 nav-on-hero" : "pt-4",
+  ]}
+>
+  <div
+    id="nav-pill"
+    class:list={[
+      "nav-float-pill pointer-events-auto max-w-4xl mx-auto flex items-center justify-between gap-3 sm:gap-4 px-4 sm:px-5 py-2.5 rounded-full border transition-all duration-300",
+      pillClass,
+    ]}
+  >
+    <div id="nav-logo">
+      {
+        heroNav ? (
+          <>
+            <Logo theme="light" class="nav-logo-light shrink-0 scale-90 sm:scale-100 origin-left" />
+            <Logo theme="default" class="nav-logo-dark hidden shrink-0 scale-90 sm:scale-100 origin-left" />
+          </>
+        ) : (
+          <Logo class="shrink-0 scale-90 sm:scale-100 origin-left" />
+        )
+      }
+    </div>
 
-      <nav class="hidden md:flex items-center gap-8">
+    <nav class="hidden md:flex items-center gap-2">
+      <div
+        id="nav-track"
+        class:list={[
+          "nav-pill-track flex items-center gap-0.5 p-1 rounded-full border transition-colors duration-300",
+          heroNav ? "bg-white/10 border-white/15" : "bg-plum/5 border-plum/10",
+        ]}
+      >
         {
           navLinks.map((link) => (
-            <a href={link.href} class="nav-link">
+            <a
+              href={link.href}
+              class:list={[
+                "nav-pill-link",
+                heroNav && "nav-pill-link-hero",
+                isActive(link.href) && (heroNav ? "nav-pill-link-hero-active" : "nav-pill-link-active"),
+              ]}
+            >
               {link.label}
             </a>
           ))
         }
-        <CTAButton href="/enroll" variant="gold" size="sm">
-          Enroll Now
-        </CTAButton>
-      </nav>
+      </div>
+      <CTAButton href="/enroll" variant="gold" size="sm" class="shrink-0 !px-4 !py-2">
+        Enroll
+      </CTAButton>
+    </nav>
 
-      <button
-        id="mobile-menu-btn"
-        type="button"
-        class="md:hidden p-2 text-charcoal"
-        aria-label="Toggle menu"
-        aria-expanded="false"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            id="menu-icon-open"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"></path>
-          <path
-            id="menu-icon-close"
-            class="hidden"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-    </div>
+    <button
+      id="mobile-menu-btn"
+      type="button"
+      class:list={[
+        "md:hidden p-2 -mr-1 transition-colors rounded-full",
+        heroNav
+          ? "text-white/90 hover:text-gold hover:bg-white/10"
+          : "text-plum hover:text-plum-dark hover:bg-plum/5",
+      ]}
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          id="menu-icon-open"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+        <path
+          id="menu-icon-close"
+          class="hidden"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
   </div>
 
   <nav
     id="mobile-menu"
-    class="hidden md:hidden border-t border-plum/10 bg-white px-4 py-4 space-y-3"
+    class:list={[
+      "nav-float-mobile hidden md:hidden pointer-events-auto max-w-xs mx-auto mt-2 px-4 py-4 rounded-2xl backdrop-blur-md border shadow-xl",
+      heroNav
+        ? "bg-plum/95 border-white/15 shadow-black/30"
+        : "bg-white/95 border-plum/10 shadow-plum/10",
+    ]}
+    aria-label="Mobile navigation"
   >
-    {
-      navLinks.map((link) => (
-        <a
-          href={link.href}
-          class="block py-2 text-charcoal/80 hover:text-plum font-medium"
-        >
-          {link.label}
-        </a>
-      ))
-    }
-    <CTAButton href="/enroll" variant="gold" class="w-full text-center">
+    <div class="flex flex-col gap-1">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              "block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors",
+              isActive(link.href)
+                ? heroNav
+                  ? "bg-gold text-charcoal"
+                  : "bg-plum text-white"
+                : heroNav
+                  ? "text-white/85 hover:text-gold hover:bg-white/10"
+                  : "text-charcoal/80 hover:text-plum hover:bg-plum/5",
+            ]}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+    <CTAButton href="/enroll" variant="gold" class="w-full text-center mt-3">
       Enroll Now
     </CTAButton>
   </nav>
 </header>
 
-<script>
+{!heroNav && <div class="nav-spacer h-[4.5rem] sm:h-[5rem]" aria-hidden="true"></div>}
+
+<script define:vars={{ heroNav }}>
   const btn = document.getElementById("mobile-menu-btn");
   const menu = document.getElementById("mobile-menu");
   const iconOpen = document.getElementById("menu-icon-open");
   const iconClose = document.getElementById("menu-icon-close");
+  const siteNav = document.getElementById("site-nav");
 
   btn?.addEventListener("click", () => {
     const isOpen = !menu?.classList.contains("hidden");
@@ -92,4 +159,29 @@ const navLinks = [
     iconClose?.classList.toggle("hidden", isOpen);
     btn.setAttribute("aria-expanded", String(!isOpen));
   });
+
+  document.addEventListener("click", (e) => {
+    if (
+      menu &&
+      !menu.classList.contains("hidden") &&
+      !menu.contains(e.target) &&
+      !btn?.contains(e.target)
+    ) {
+      menu.classList.add("hidden");
+      iconOpen?.classList.remove("hidden");
+      iconClose?.classList.add("hidden");
+      btn?.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  if (heroNav) {
+    const hero = document.getElementById("page-hero");
+    const onScroll = () => {
+      if (!hero || !siteNav) return;
+      const pastHero = hero.getBoundingClientRect().bottom < 80;
+      siteNav.classList.toggle("nav-past-hero", pastHero);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
 </script>

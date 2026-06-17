@@ -23,13 +23,6 @@ export const POST: APIRoute = async ({ request }) => {
       email = String(formData.get("email") ?? "");
     }
 
-    if (!firstName.trim()) {
-      return new Response(JSON.stringify({ error: "First name is required." }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
-    }
-
     if (!email.trim() || !EMAIL_REGEX.test(email.trim())) {
       return new Response(JSON.stringify({ error: "Please enter a valid email address." }), {
         status: 400,
@@ -37,9 +30,13 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
+    const trimmedEmail = email.trim();
+    const trimmedFirstName =
+      firstName.trim() || trimmedEmail.split("@")[0] || "Subscriber";
+
     const payload = {
-      firstName: firstName.trim(),
-      email: email.trim(),
+      firstName: trimmedFirstName,
+      email: trimmedEmail,
       tag: "waitlist",
       subscribedAt: new Date().toISOString(),
     };

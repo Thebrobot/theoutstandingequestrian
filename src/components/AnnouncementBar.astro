@@ -1,0 +1,31 @@
+---
+import { COURSE_NAME, COURSE_PRICE } from "../config";
+
+const promoPrice = "$380";
+const promoDeadline = "June 30";
+---
+
+<div
+  class="announcement-bar fixed top-0 inset-x-0 z-[60] bg-plum text-white border-b border-gold/30"
+  role="region"
+  aria-label="Promotion announcement"
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2.5 text-center">
+    <p class="text-xs sm:text-sm leading-snug">
+      <span class="font-semibold uppercase tracking-[0.12em] text-gold mr-1.5 sm:mr-2">
+        Spring special
+      </span>
+      <span class="text-white/90">
+        Save $50 on {COURSE_NAME}. Now <strong class="text-white font-semibold">{promoPrice}</strong>
+        <span class="text-white/50 line-through mx-1">{COURSE_PRICE}</span>
+        · Offer ends {promoDeadline}
+      </span>
+      <a
+        href="/enroll"
+        class="inline ml-1 sm:ml-2 font-semibold text-gold hover:text-gold-light underline underline-offset-2 transition-colors"
+      >
+        Claim your spot →
+      </a>
+    </p>
+  </div>
+</div>

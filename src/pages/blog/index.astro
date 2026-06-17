@@ -13,12 +13,12 @@ const posts = getBlogPostsSorted();
   title="Blog"
   description="Training insights on groundwork, riding, and mental fitness from Outstanding Equestrian."
 >
-  <section class="section-plum py-16 sm:py-12">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+  <section id="page-hero" class="section-plum relative overflow-hidden min-h-[50vh] flex items-center">
+    <div class="hero-content max-w-6xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20 w-full">
       <SectionHeader
         eyebrow="Insights"
         heading="Training ideas you can use today"
-        subtext="Practical lessons from our six-week Renew SOLO program — groundwork, riding skills, and the mindset work that ties it all together."
+        subtext="Practical lessons from our six-week Renew SOLO program: groundwork, riding skills, and the mindset work that ties it all together."
         align="center"
         decorative
         theme="dark"
@@ -37,7 +37,7 @@ const posts = getBlogPostsSorted();
           Want the full structured program?
         </h2>
         <p class="text-charcoal/70 max-w-2xl mx-auto mb-6 leading-relaxed">
-          {COURSE_NAME} gives you six weeks of progressive video lessons — groundwork, mounted
+          {COURSE_NAME} gives you six weeks of progressive video lessons: groundwork, mounted
           work, and mental fitness designed for solo riders.
         </p>
         <CTAButton href="/enroll" variant="primary" size="lg">
