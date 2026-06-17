@@ -17,7 +17,7 @@ import {
   preloadPoster="/videos/horse-jumping-hero-poster.jpg"
 >
   <!-- Hero -->
-  <section id="page-hero" class="relative text-white overflow-hidden min-h-[70vh] flex items-center">
+  <section id="page-hero" class="page-hero page-hero--courses relative text-white overflow-hidden">
     <HeroVideo
       mp4="/videos/horse-jumping-hero.mp4"
       webm="/videos/horse-jumping-hero.webm"
@@ -38,7 +38,7 @@ import {
       aria-hidden="true"
     >
     </div>
-    <div class="hero-content max-w-4xl mx-auto px-4 sm:px-6 pb-20 sm:pb-28 text-center w-full">
+    <div class="hero-content max-w-4xl mx-auto px-4 sm:px-6 text-center w-full">
       <p class="text-gold font-semibold uppercase tracking-widest text-sm mb-3">
         Better Rides Begin Here
       </p>
@@ -53,7 +53,7 @@ import {
   </section>
 
   <!-- Renew Your Ride -->
-  <section class="section-white py-16 sm:py-20">
+  <section class="section-white section-pad">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <SectionHeader
         eyebrow="Explore Courses"
@@ -95,7 +95,7 @@ import {
   </section>
 
   <!-- Memberships -->
-  <section class="section-plum py-16 sm:py-20">
+  <section class="section-plum section-pad">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <SectionHeader
         eyebrow="Keep the Momentum Going"
@@ -112,7 +112,7 @@ import {
   </section>
 
   <!-- Your First FEI -->
-  <section class="section-white py-16 sm:py-20">
+  <section class="section-white section-pad">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
       {
         getCoursesByCategory("specialized").map((course) => (

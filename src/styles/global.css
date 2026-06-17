@@ -18,12 +18,25 @@ html {
 }
 
 :root {
-  --announcement-height: 2.75rem;
+  --announcement-height: 3.375rem;
+  --nav-stack-height: 4.875rem;
+  --nav-clearance: calc(var(--announcement-height) + var(--nav-stack-height));
+  --hero-breathe: 2.25rem;
+  --section-pad-y: 3rem;
 }
 
 @media (min-width: 640px) {
   :root {
     --announcement-height: 2.875rem;
+    --nav-stack-height: 5.25rem;
+    --hero-breathe: 3rem;
+    --section-pad-y: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --section-pad-y: 5rem;
   }
 }
 
@@ -36,13 +49,7 @@ body:not(.announcement-visible) {
 }
 
 body.announcement-visible .nav-spacer {
-  height: calc(4.5rem + var(--announcement-height));
-}
-
-@media (min-width: 640px) {
-  body.announcement-visible .nav-spacer {
-    height: calc(5rem + var(--announcement-height));
-  }
+  height: var(--nav-clearance);
 }
 
 body {
@@ -262,7 +269,53 @@ body {
 }
 
 .hero-content {
-  @apply relative pt-32 sm:pt-36;
+  @apply relative w-full;
+  padding-top: calc(var(--nav-clearance) + var(--hero-breathe));
+  padding-bottom: var(--hero-breathe);
+}
+
+.page-hero {
+  @apply relative overflow-hidden flex flex-col justify-end;
+}
+
+.page-hero--home {
+  min-height: 85vh;
+}
+
+.page-hero--courses {
+  min-height: 65vh;
+}
+
+.page-hero--standard {
+  min-height: 50vh;
+}
+
+.page-hero--compact {
+  min-height: 42vh;
+}
+
+@media (min-width: 640px) {
+  .page-hero--home {
+    min-height: 90vh;
+  }
+
+  .page-hero--courses {
+    min-height: 70vh;
+  }
+
+  .page-hero--standard {
+    min-height: 55vh;
+  }
+}
+
+.section-pad {
+  padding-top: var(--section-pad-y);
+  padding-bottom: var(--section-pad-y);
+}
+
+.section-pad-tight {
+  padding-top: calc(var(--section-pad-y) * 0.85);
+  padding-bottom: calc(var(--section-pad-y) * 0.85);
 }
 
 .pain-quote {

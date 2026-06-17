@@ -13,8 +13,8 @@ const posts = getBlogPostsSorted();
   title="Blog"
   description="Training insights on groundwork, riding, and mental fitness from Outstanding Equestrian."
 >
-  <section id="page-hero" class="section-plum relative overflow-hidden min-h-[50vh] flex items-center">
-    <div class="hero-content max-w-6xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20 w-full">
+  <section id="page-hero" class="page-hero page-hero--standard section-plum overflow-hidden">
+    <div class="hero-content max-w-6xl mx-auto px-4 sm:px-6 w-full">
       <SectionHeader
         eyebrow="Insights"
         heading="Training ideas you can use today"
@@ -26,13 +26,13 @@ const posts = getBlogPostsSorted();
     </div>
   </section>
 
-  <section class="section-white py-12 sm:py-16">
+  <section class="section-white section-pad">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
         {posts.map((post) => <BlogCard post={post} />)}
       </div>
 
-      <div class="mt-16 text-center rounded-2xl bg-plum/5 border border-plum/15 p-8 sm:p-10">
+      <div class="mt-12 sm:mt-16 text-center rounded-2xl bg-plum/5 border border-plum/15 p-6 sm:p-10">
         <h2 class="font-serif text-2xl sm:text-3xl font-bold text-charcoal mb-3">
           Want the full structured program?
         </h2>

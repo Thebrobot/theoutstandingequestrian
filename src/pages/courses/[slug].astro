@@ -59,7 +59,7 @@ const whatsInside = [
 
 <BaseLayout title={course.title} description={course.description}>
   <!-- Hero -->
-  <section id="page-hero" class="section-plum relative overflow-hidden min-h-[55vh] flex items-end">
+  <section id="page-hero" class="page-hero page-hero--standard section-plum overflow-hidden">
     {
       course.category === "membership" && (
         <div class="absolute inset-0">
@@ -72,7 +72,7 @@ const whatsInside = [
         </div>
       )
     }
-    <div class="hero-content max-w-6xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20 w-full">
+    <div class="hero-content max-w-6xl mx-auto px-4 sm:px-6 w-full">
       {
         course.highlight && (
           <p class="text-gold font-semibold uppercase tracking-widest text-sm mb-3">
@@ -121,7 +121,7 @@ const whatsInside = [
   </section>
 
   <!-- Features -->
-  <section class="section-white py-16 sm:py-20">
+  <section class="section-white section-pad">
     <div class="max-w-3xl mx-auto px-4 sm:px-6">
       <SectionHeader eyebrow="What's included" heading={`Everything in ${course.title}`} />
       <ul class="mt-8 space-y-4">
@@ -153,7 +153,7 @@ const whatsInside = [
   {
     isRenewProgram && (
       <>
-        <section class="section-plum py-16 sm:py-20">
+        <section class="section-plum section-pad">
           <div class="max-w-3xl mx-auto px-4 sm:px-6">
             <SectionHeader eyebrow="Is this for you?" heading="This course is for you if…" theme="dark" />
             <ul class="mt-8 space-y-4">
@@ -179,7 +179,7 @@ const whatsInside = [
           </div>
         </section>
 
-        <section class="section-white py-16 sm:py-20">
+        <section class="section-white section-pad">
           <div class="max-w-4xl mx-auto px-4 sm:px-6">
             <SectionHeader
               heading="What you'll learn: week by week"
@@ -224,7 +224,7 @@ const whatsInside = [
           </div>
         </section>
 
-        <section class="section-plum py-16 sm:py-20">
+        <section class="section-plum section-pad">
           <div class="max-w-6xl mx-auto px-4 sm:px-6">
             <SectionHeader
               eyebrow="Program details"
@@ -261,7 +261,7 @@ const whatsInside = [
           </div>
         </section>
 
-        <section class="section-white py-16 sm:py-20">
+        <section class="section-white section-pad">
           <div class="max-w-6xl mx-auto px-4 sm:px-6">
             <SectionHeader
               eyebrow="Student stories"
@@ -275,7 +275,7 @@ const whatsInside = [
           </div>
         </section>
 
-        <section class="section-plum py-16 sm:py-20">
+        <section class="section-plum section-pad">
           <div class="max-w-4xl mx-auto px-4 sm:px-6">
             <div class="flex flex-col md:flex-row gap-8 items-center">
               <div class="w-48 h-48 shrink-0 rounded-full overflow-hidden border-2 border-gold/40">
@@ -310,7 +310,7 @@ const whatsInside = [
   }
 
   <!-- Pricing CTA -->
-  <section class="section-plum py-16 sm:py-20">
+  <section class="section-plum section-pad">
     <div class="max-w-2xl mx-auto px-4 sm:px-6 text-center">
       <h2 class="font-serif text-3xl sm:text-4xl font-bold mb-2">{course.title}</h2>
       {
