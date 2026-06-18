@@ -303,7 +303,7 @@ body {
 
   .page-hero--home .hero-content,
   .page-hero--courses .hero-content {
-    padding-top: var(--hero-breathe);
+    padding-top: calc(var(--nav-clearance) + var(--hero-breathe));
     padding-bottom: var(--hero-breathe);
   }
 
