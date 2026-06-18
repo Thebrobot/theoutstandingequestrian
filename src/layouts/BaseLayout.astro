@@ -28,7 +28,7 @@ const {
 const BASE_URL = Astro.site?.origin ?? "https://theoutstandingequestrian.vercel.app";
 const pageTitle = title === BRAND_NAME ? title : `${title} | ${BRAND_NAME}`;
 const canonicalURL = new URL(Astro.url.pathname, BASE_URL).href;
-const resolvedOgImage = ogImage ?? `${BASE_URL}/images/oe-hero-training.png`;
+const resolvedOgImage = ogImage ?? `${BASE_URL}/images/og-social-card.jpg`;
 
 const orgSchema = {
   "@context": "https://schema.org",
