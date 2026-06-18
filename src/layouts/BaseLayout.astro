@@ -25,7 +25,7 @@ const {
   preloadPoster,
 } = Astro.props;
 
-const BASE_URL = "https://theoutstandingequestrian.com";
+const BASE_URL = Astro.site?.origin ?? "https://theoutstandingequestrian.vercel.app";
 const pageTitle = title === BRAND_NAME ? title : `${title} | ${BRAND_NAME}`;
 const canonicalURL = new URL(Astro.url.pathname, BASE_URL).href;
 const resolvedOgImage = ogImage ?? `${BASE_URL}/images/oe-hero-training.png`;

@@ -22,7 +22,7 @@ if (!course) {
 const isRenewProgram = course.category === "renew";
 const isExternalCta = course.cta.href.startsWith("mailto:");
 
-const BASE_URL = "https://theoutstandingequestrian.com";
+const BASE_URL = Astro.site?.origin ?? "https://theoutstandingequestrian.vercel.app";
 
 const courseSchema = {
   "@context": "https://schema.org",

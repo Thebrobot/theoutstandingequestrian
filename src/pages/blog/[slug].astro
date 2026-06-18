@@ -27,7 +27,7 @@ const categoryColors: Record<typeof post.category, string> = {
   Mindset: "bg-white/20 text-white",
 };
 
-const BASE_URL = "https://theoutstandingequestrian.com";
+const BASE_URL = Astro.site?.origin ?? "https://theoutstandingequestrian.vercel.app";
 
 const blogPostingSchema = {
   "@context": "https://schema.org",

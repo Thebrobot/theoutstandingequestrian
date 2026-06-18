@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://theoutstandingequestrian.com',
+  site: 'https://theoutstandingequestrian.vercel.app',
 
   integrations: [
     sitemap({
