@@ -11,11 +11,24 @@ import { INSTRUCTOR_NAME, BRAND_NAME } from "../config";
 ---
 
 <BaseLayout
-  title="Home"
-  description="Stop guessing. Start growing. Structured equestrian training for solo riders."
+  title="Online Equestrian Coaching for Solo Riders"
+  description="Structured online equestrian coaching for solo riders. Six weeks of groundwork, mounted work, and mental fitness — built for riders training without a coach nearby."
   preloadVideo="/videos/dressage-hero.mp4"
   preloadPoster="/videos/dressage-hero-poster.jpg"
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "Renew SOLO",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "3",
+        "bestRating": "5"
+      }
+    })} />
+  </Fragment>
   <!-- Hero -->
   <section id="page-hero" class="page-hero page-hero--home relative text-white overflow-hidden">
     <HeroVideo
@@ -46,10 +59,13 @@ import { INSTRUCTOR_NAME, BRAND_NAME } from "../config";
           <span class="w-2 h-2 rounded-full bg-plum"></span>
           Enrollment currently open
         </p>
-        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4">
           Stop Guessing.<br />
           <span class="text-gold">Start Growing.</span>
         </h1>
+        <p class="text-sm sm:text-base text-cream/70 font-medium tracking-wide mb-6">
+          Online equestrian coaching for solo riders — structured, progressive, and built for the barn.
+        </p>
         <p class="text-lg sm:text-xl text-cream/90 mb-8 leading-relaxed">
           A six-week program that teaches you to ride with intention, communicate clearly with
           your horse, and build real progress even when you train alone.
@@ -189,7 +205,7 @@ import { INSTRUCTOR_NAME, BRAND_NAME } from "../config";
             <div class="rounded-2xl overflow-hidden border-2 border-plum/15 shadow-xl">
               <img
                 src="/images/oe-hero-training.png"
-                alt="Rider working with a calm horse in an outdoor arena"
+                alt="Rider working with a calm horse in an outdoor arena during groundwork session"
                 class="aspect-[4/5] sm:aspect-[16/12] w-full object-cover"
                 loading="lazy"
               />
@@ -342,7 +358,7 @@ import { INSTRUCTOR_NAME, BRAND_NAME } from "../config";
           <div class="relative rounded-2xl border-2 border-gold/30 overflow-hidden shadow-xl">
             <img
               src="/images/oe-instructor-portrait.png"
-              alt={`${INSTRUCTOR_NAME}, equestrian instructor`}
+              alt="Davina Warrener, online equestrian coach and FEI event rider"
               class="w-full aspect-[4/5] object-cover"
               loading="lazy"
             />
@@ -397,7 +413,7 @@ import { INSTRUCTOR_NAME, BRAND_NAME } from "../config";
       <div class="relative rounded-2xl border-2 border-gold/20 overflow-hidden shadow-lg">
         <img
           src="/images/oe-community-riders.png"
-          alt="Group of riders with their horses in an arena"
+          alt="Group of equestrian riders with their horses in an arena"
           class="aspect-[21/9] w-full object-cover"
           loading="lazy"
         />

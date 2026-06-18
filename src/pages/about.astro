@@ -6,9 +6,26 @@ import { BRAND_NAME, INSTRUCTOR_NAME, COURSE_NAME } from "../config";
 ---
 
 <BaseLayout
-  title="About"
-  description={`Learn about ${BRAND_NAME} and ${INSTRUCTOR_NAME}'s approach to equestrian training.`}
+  title="Davina Warrener — Online Equestrian Coach"
+  description="Davina Warrener is an FEI event rider and online equestrian coach who helps solo riders train with intention, clarity, and confidence — wherever they ride."
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Davina Warrener",
+      "jobTitle": "Equestrian Coach",
+      "description": "FEI event rider and online equestrian coach helping solo riders train with intention and clarity through structured six-week programs.",
+      "url": "https://theoutstandingequestrian.com/about",
+      "sameAs": [
+        "https://www.instagram.com/davinaeventing/"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Outstanding Equestrian"
+      }
+    })} />
+  </Fragment>
   <section id="page-hero" class="page-hero page-hero--standard section-plum overflow-hidden">
     <div class="hero-content max-w-3xl mx-auto px-4 sm:px-6 w-full">
       <SectionHeader

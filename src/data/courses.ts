@@ -5,6 +5,8 @@ export interface Course {
   title: string;
   subtitle?: string;
   description: string;
+  seoTitle: string;
+  seoDescription: string;
   format: string;
   thumbnail: string;
   category: CourseCategory;
@@ -37,6 +39,9 @@ export const courses: Course[] = [
     title: "Renew SOLO",
     description:
       "Self-paced, lifetime access. A six-week training reset with downloadable ride plans. Reset and refocus at your own pace.",
+    seoTitle: "6-Week Online Equestrian Training Program",
+    seoDescription:
+      "A self-paced six-week online equestrian training program with downloadable ride plans, groundwork progressions, and mental fitness lessons. Lifetime access from $430.",
     format: "6 Modules • Self-Paced",
     thumbnail: "/images/course-renew-solo-placeholder.jpg",
     category: "renew",
@@ -52,6 +57,9 @@ export const courses: Course[] = [
     subtitle: "Structure + flexibility",
     description:
       "The same 6-week reset with coaching checkpoints, bi-weekly group calls, and community support.",
+    seoTitle: "Online Equestrian Coaching with Group Support",
+    seoDescription:
+      "Six-week online equestrian coaching program with three 1-on-1 calls, bi-weekly group coaching, and 12 months of access. Structure with flexibility, from $995.",
     format: "6 Modules • Hybrid Coaching",
     thumbnail: "/images/course-renew-hybrid-placeholder.jpg",
     category: "renew",
@@ -76,6 +84,9 @@ export const courses: Course[] = [
     subtitle: "Total transformation + full support",
     description:
       "The complete Renew Your Ride experience with private coaching, personalized ride plans, and daily messaging.",
+    seoTitle: "1-on-1 Online Equestrian Coaching",
+    seoDescription:
+      "Total transformation with six private coaching calls, daily messaging, personalized ride plans, and lifetime access. Davina Warrener's most supported online coaching offer.",
     format: "6 Modules • Elite Coaching",
     thumbnail: "/images/course-renew-elite-placeholder.jpg",
     category: "renew",
@@ -100,6 +111,9 @@ export const courses: Course[] = [
     subtitle: "Group Coaching Membership for Dedicated Riders",
     description:
       "Keep the momentum going after Renew Your Ride with live group coaching and community support.",
+    seoTitle: "Group Equestrian Coaching Membership",
+    seoDescription:
+      "Group equestrian coaching membership — two live calls per month, weekly exercises, and community support for dedicated riders. $147/month.",
     format: "Monthly Membership",
     thumbnail: "/images/course-momentum.jpg",
     category: "membership",
@@ -122,6 +136,9 @@ export const courses: Course[] = [
     subtitle: "1:1 Coaching Membership for Serious Riders",
     description:
       "Premium monthly coaching with Davina: group calls, private sessions, and priority community support.",
+    seoTitle: "Monthly 1-on-1 Equestrian Coaching",
+    seoDescription:
+      "Monthly 1-on-1 equestrian coaching with Davina Warrener. Eight private calls per month plus group coaching and community access. For serious riders committed to fast progress.",
     format: "Monthly Membership",
     thumbnail: "/images/course-on-track.jpg",
     category: "membership",
@@ -144,6 +161,9 @@ export const courses: Course[] = [
     subtitle: "Video Mini Course",
     description:
       "A solo video series that walks you through everything you need to know in the months leading up to your FEI debut.",
+    seoTitle: "Your First FEI — Video Mini Course for Equestrians",
+    seoDescription:
+      "A solo video mini-course covering everything you need for your FEI debut — paperwork, passports, jog prep, packing, travel, and rider mindset.",
     format: "Video Mini Course",
     thumbnail: "/images/course-fei-placeholder.jpg",
     category: "specialized",

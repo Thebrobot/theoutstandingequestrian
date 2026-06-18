@@ -26,9 +26,38 @@ const categoryColors: Record<typeof post.category, string> = {
   Mounted: "bg-gold/25 text-charcoal",
   Mindset: "bg-white/20 text-white",
 };
+
+const BASE_URL = "https://theoutstandingequestrian.com";
+
+const blogPostingSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.title,
+  "description": post.excerpt,
+  "url": `${BASE_URL}/blog/${post.slug}`,
+  "datePublished": post.publishedAt,
+  "dateModified": post.publishedAt,
+  "author": {
+    "@type": "Person",
+    "name": "Davina Warrener",
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Outstanding Equestrian",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${BASE_URL}/images/logo.png`,
+    },
+  },
+  "image": `${BASE_URL}${post.image}`,
+  "mainEntityOfPage": `${BASE_URL}/blog/${post.slug}`,
+};
 ---
 
 <BaseLayout title={post.title} description={post.excerpt}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
+  </Fragment>
   <section id="page-hero" class="page-hero page-hero--compact section-plum overflow-hidden">
     <div class="hero-content max-w-3xl mx-auto px-4 sm:px-6 w-full">
       <a

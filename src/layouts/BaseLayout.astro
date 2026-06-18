@@ -8,6 +8,7 @@ import { BRAND_NAME } from "../config";
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
   minimal?: boolean;
   heroNav?: boolean;
   preloadVideo?: string;
@@ -17,13 +18,34 @@ interface Props {
 const {
   title = BRAND_NAME,
   description = "Premium equestrian education for riders who want to grow with intention.",
+  ogImage,
   minimal = false,
   heroNav = !minimal,
   preloadVideo,
   preloadPoster,
 } = Astro.props;
 
+const BASE_URL = "https://theoutstandingequestrian.com";
 const pageTitle = title === BRAND_NAME ? title : `${title} | ${BRAND_NAME}`;
+const canonicalURL = new URL(Astro.url.pathname, BASE_URL).href;
+const resolvedOgImage = ogImage ?? `${BASE_URL}/images/oe-hero-training.png`;
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Outstanding Equestrian",
+  "url": BASE_URL,
+  "logo": `${BASE_URL}/images/logo.png`,
+  "sameAs": [
+    "https://www.instagram.com/davinaeventing/",
+    "https://podcasts.apple.com/ca/podcast/the-outstanding-equestrian/id1647459235"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "hello@theoutstandingequestrian.com",
+    "contactType": "customer support"
+  }
+};
 ---
 
 <!doctype html>
@@ -32,6 +54,29 @@ const pageTitle = title === BRAND_NAME ? title : `${title} | ${BRAND_NAME}`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+
+    <!-- Google Search Console verification — replace placeholder with actual code -->
+    <meta name="google-site-verification" content="REPLACE_WITH_GSC_VERIFICATION_CODE" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Outstanding Equestrian" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={resolvedOgImage} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -50,6 +95,12 @@ const pageTitle = title === BRAND_NAME ? title : `${title} | ${BRAND_NAME}`;
         <link rel="preload" as="video" href={preloadVideo} type="video/mp4" fetchpriority="high" />
       )
     }
+
+    <!-- Organization schema (every page) -->
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+
+    <!-- Per-page structured data injected by individual pages -->
+    <slot name="head" />
   </head>
   <body class:list={["min-h-screen flex flex-col", !minimal && "announcement-visible"]}>
     {minimal ? (

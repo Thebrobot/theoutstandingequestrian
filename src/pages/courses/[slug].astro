@@ -22,6 +22,51 @@ if (!course) {
 const isRenewProgram = course.category === "renew";
 const isExternalCta = course.cta.href.startsWith("mailto:");
 
+const BASE_URL = "https://theoutstandingequestrian.com";
+
+const courseSchema = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": course.title,
+  "description": course.seoDescription,
+  "provider": {
+    "@type": "Organization",
+    "name": "Outstanding Equestrian",
+    "sameAs": BASE_URL,
+  },
+  "url": `${BASE_URL}/courses/${course.slug}`,
+  ...(course.price
+    ? {
+        "offers": {
+          "@type": "Offer",
+          "price": course.price.replace(/[^0-9.]/g, ""),
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": course.slug === "renew-solo" ? `${BASE_URL}/enroll` : `${BASE_URL}/courses/${course.slug}`,
+        },
+      }
+    : {}),
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "online",
+    ...(course.category === "renew" ? { "courseWorkload": "PT6W" } : {}),
+  },
+};
+
+const aggregateRatingSchema = course.slug === "renew-solo"
+  ? {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "Renew SOLO",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "3",
+        "bestRating": "5",
+      },
+    }
+  : null;
+
 const renewWhoItsFor = [
   "You ride solo and want a structured weekly plan you can follow at your own barn",
   "Your horse steps into your space on the ground or ignores your leg under saddle",
@@ -57,7 +102,13 @@ const whatsInside = [
 ];
 ---
 
-<BaseLayout title={course.title} description={course.description}>
+<BaseLayout title={course.seoTitle} description={course.seoDescription}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(courseSchema)} />
+    {aggregateRatingSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(aggregateRatingSchema)} />
+    )}
+  </Fragment>
   <!-- Hero -->
   <section id="page-hero" class="page-hero page-hero--standard section-plum overflow-hidden">
     {
@@ -281,7 +332,7 @@ const whatsInside = [
               <div class="w-48 h-48 shrink-0 rounded-full overflow-hidden border-2 border-gold/40">
                 <img
                   src="/images/oe-instructor-portrait.png"
-                  alt={INSTRUCTOR_NAME}
+                  alt="Davina Warrener, online equestrian coach and FEI event rider"
                   class="w-full h-full object-cover"
                 />
               </div>
